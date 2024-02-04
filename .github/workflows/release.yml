@@ -23,5 +23,5 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: Publish app
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish
