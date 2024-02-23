@@ -14,6 +14,7 @@ import useFile from '@/frontend/hooks/useFile';
 import GlobalShortCut from '@/frontend/components/GlobalShortCut';
 import SideBar from '@/frontend/components/SideBar';
 import useSystem from '@/frontend/hooks/useSystem';
+import {darkColor, FONT_SIZE, lightColor, themeProvider} from "@/frontend/styles/style";
 
 const api = window.electron;
 const PlayerP = () => {
@@ -193,7 +194,9 @@ const PlayerP = () => {
                     >
                         <Split
                             className={cn(
-                                'flex flex-row h-0 flex-1 w-full bg-background overflow-hidden'
+                                'flex flex-row h-0 flex-1 w-full overflow-hidden bg-gray-300',
+                                lightColor["bg-background"],
+                                `dark:${darkColor["bg-background"]}`
                             )}
                             sizes={JSON.parse(sizeA)}
                             onDragEnd={(sizes) => {

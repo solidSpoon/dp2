@@ -1,12 +1,10 @@
-import { motion } from 'framer-motion';
-import { APOLLO_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { cn } from '@/common/utils/Util';
 import AboutBg from '@/frontend/components/bg/AboutBg';
 import Separator from '@/frontend/components/Separtor';
 // import logoDark from '../../../../../assets/logo-dark.png';
-// import logoLight from '../../../../../assets/logo-light.png';
+import logoLight from '../../../assets/logo-light.png';
 import useSystem from '@/frontend/hooks/useSystem';
 
 const api = window.electron;
@@ -29,11 +27,11 @@ const About = () => {
                         'bg-white w-28 h-28 -translate-y-12 rounded-3xl border drop-shadow-lg grid place-content-center'
                     )}
                 >
-                    {/*<img*/}
-                    {/*    src={logoLight}*/}
-                    {/*    alt="logo"*/}
-                    {/*    className="w-24 h-24 user-drag-none"*/}
-                    {/*/>*/}
+                    <img
+                        src={logoLight}
+                        alt="logo"
+                        className="w-24 h-24 user-drag-none"
+                    />
                 </div>
             </div>
             <div className={cn('w-full text-center text-5xl text-neutral-500')}>

@@ -1,5 +1,6 @@
 export interface SentenceBlockPart {
     content: string;
+    implicit: string;
     isWord: boolean;
 }
 

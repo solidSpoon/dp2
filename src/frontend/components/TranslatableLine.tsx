@@ -5,7 +5,7 @@ import Word from './Word';
 import usePlayerController from '../hooks/usePlayerController';
 import useSetting from '../hooks/useSetting';
 import { cn, p } from '@/common/utils/Util';
-import { FontSize } from '../styles/style';
+import { FONT_SIZE } from '../styles/style';
 import IconButton from './toolTip/IconButton';
 
 interface TranslatableSubtitleLineParam {
@@ -59,11 +59,11 @@ const TranslatableLine = ({
             className={cn(
                 'flex justify-between items-start rounded-lg drop-shadow-md text-mainSubtitleOneColor mx-10 mt-2.5 shadow-inner shadow-sentenceInnerShadow z-50',
                 'bg-sentenceBackground',
-                FontSize.mainSubtitleOne.large,
-                fontSize === 'fontSizeSmall' && FontSize.mainSubtitleOne.small,
+                FONT_SIZE["ms1-large"],
+                fontSize === 'fontSizeSmall' && FONT_SIZE["ms1-small"],
                 fontSize === 'fontSizeMedium' &&
-                    FontSize.mainSubtitleOne.medium,
-                fontSize === 'fontSizeLarge' && FontSize.mainSubtitleOne.large
+                FONT_SIZE["ms1-medium"],
+                fontSize === 'fontSizeLarge' && FONT_SIZE["ms1-large"]
             )}
         >
             <div className={cn('w-10 h-full p-2.5')}>

@@ -8,8 +8,8 @@ import useSetting from '@/frontend/hooks/useSetting';
 import { cn } from '@/common/utils/Util';
 import FileSelector from '@/frontend/components/fileBowser/FileSelector';
 import useProjectBrowser from '@/frontend/hooks/useProjectBrowser';
-// import logoLight from '../../../../../assets/logo-light.png';
-// import logoDark from '../../../../../assets/logo-dark.png';
+import logoLight from '../../../assets/logo-light.png';
+import logoDark from '../../../assets/logo-dark.png';
 import useLayout from '@/frontend/hooks/useLayout';
 import FileItem from '@/frontend/components/fileBowser/FileItem';
 import useFile from '@/frontend/hooks/useFile';
@@ -59,7 +59,7 @@ const HomePage = () => {
             >
                 <div className="relative top-0 left-0 w-32 h-32">
                     <img
-                        // src={dark ? logoDark : logoLight}
+                        src={dark ? logoDark : logoLight}
                         alt="logo"
                         className="w-32 h-32 absolute top-0 left-0 user-drag-none"
                     />

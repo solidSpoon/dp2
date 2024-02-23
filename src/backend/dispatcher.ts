@@ -16,7 +16,7 @@ import { appVersion, checkUpdate } from './controllers/CheckUpdate';
 import { WindowState } from '@/common/types/Types';
 import { WatchProjectVideo } from '@/backend/db/tables/watchProjectVideos';
 import { SettingKey } from '@/common/types/store_schema';
-import { storeGet } from './store';
+import {storeGet, storeSet} from './store';
 import {Channels} from "@/preload";
 import SubtitleTimestampAdjustmentController from "@/backend/controllers/SubtitleTimestampAdjustmentController";
 import {
@@ -47,15 +47,14 @@ export default function registerHandler(mainWindowRef: { current: Electron.Cross
         log.info('ipcMain update-process', arg);
         event.reply('update-process', 'success');
     });
-    // handle(
-    //     'store-set',
-    //     async (key: SettingKey, value: string | undefined | null) => {
-    //         if (storeSet(key, value)) {
-    //             mainWindow?.webContents.send('store-update', key, value);
-    //             settingWindow?.webContents.send('store-update', key, value);
-    //         }
-    //     }
-    // );
+    handle(
+        'store-set',
+        async (key: SettingKey, value: string | undefined | null) => {
+            if (storeSet(key, value)) {
+                mainWindowRef.current?.webContents.send('store-update', key, value);
+            }
+        }
+    );
     handle('store-get', async (key: SettingKey) => {
         return storeGet(key);
     });
@@ -223,9 +222,9 @@ export default function registerHandler(mainWindowRef: { current: Electron.Cross
     handle('read-from-clipboard', async () => {
         return readFromClipboard();
     });
-    // handle('process-sentences', async (sentences: string[]) => {
-    //     return processSentences(sentences);
-    // });
+    handle('process-sentences', async (sentences: string[]) => {
+        return processSentences(sentences);
+    });
     handle('select-file', async (isFolder: boolean) => {
         return WatchProjectService.selectFiles(isFolder);
     });

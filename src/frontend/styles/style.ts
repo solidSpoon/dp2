@@ -1,28 +1,30 @@
-export class FontSize {
-    public static readonly mainSubtitleOne = {
-        small: 'text-xl',
-        medium: 'text-2xl',
-        large: 'text-3xl',
-    };
+export type FontSizeType =
+    | 'ms1-small'
+    | 'ms1-medium'
+    | 'ms1-large'
+    | 'ms2-small'
+    | 'ms2-medium'
+    | 'ms2-large'
+    | 'ms3-small'
+    | 'ms3-medium'
+    | 'ms3-large';
 
-    public static readonly mainSubtitleTwo = {
-        small: 'text-xl',
-        medium: 'text-2xl',
-        large: 'text-3xl',
-    };
-
-    public static readonly mainSubtitleThree = {
-        small: 'text-xl',
-        medium: 'text-lg',
-        large: 'text-2xl',
-    };
-}
-
+export const FONT_SIZE: {
+    [key in FontSizeType]: string;
+} = {
+    'ms1-small': 'text-xl',
+    'ms1-medium': 'text-2xl',
+    'ms1-large': 'text-3xl',
+    'ms2-small': 'text-xl',
+    'ms2-medium': 'text-2xl',
+    'ms2-large': 'text-3xl',
+    'ms3-small': 'text-xl',
+    'ms3-medium': 'text-lg',
+    'ms3-large': 'text-2xl',
+};
 export type ColorType =
     | 'bg-background'
-    | 'bg-sentenceBackground'
     | 'bg-wordHoverBackground'
-    | 'bg-sentenceHoverBackground'
     | 'bg-sentenceInnerShadow'
     | 'text-textColor'
     | 'text-mainSubtitleOneColor'
@@ -40,13 +42,11 @@ export type ColorType =
     | 'bg-settingButton'
     | 'bg-settingButtonHover';
 
-const lightColor: {
+export const lightColor: {
     [key in ColorType]: string;
 } = {
     'bg-background': 'bg-gray-300',
-    'bg-sentenceBackground': 'bg-stone-200',
     'bg-wordHoverBackground': 'bg-stone-100',
-    'bg-sentenceHoverBackground': 'bg-stone-100',
     'bg-sentenceInnerShadow': 'bg-stone-100',
     'text-textColor': 'text-stone-600',
     'text-mainSubtitleOneColor': 'text-stone-700',
@@ -65,13 +65,11 @@ const lightColor: {
     'bg-settingButtonHover': 'bg-yellow-700',
 };
 
-const darkColor: {
+export const darkColor: {
     [key in ColorType]: string;
 } = {
     'bg-background': 'bg-neutral-800',
-    'bg-sentenceBackground': 'bg-neutral-700',
     'bg-wordHoverBackground': 'bg-neutral-600',
-    'bg-sentenceHoverBackground': 'bg-neutral-600',
     'bg-sentenceInnerShadow': 'bg-neutral-600',
     'text-textColor': 'text-neutral-200',
     'text-mainSubtitleOneColor': 'text-neutral-100',

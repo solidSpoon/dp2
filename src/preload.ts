@@ -11,6 +11,10 @@ import {SettingKey} from "./common/types/store_schema";
 import {WindowState} from "./common/types/Types";
 import {YdRes} from "./common/types/YdRes";
 import Release from "@/common/types/release";
+import {
+    InsertSubtitleTimestampAdjustment,
+    SubtitleTimestampAdjustment
+} from "@/backend/db/tables/subtitleTimestampAdjustment";
 
 export type Channels =
     | 'main-state'
@@ -69,6 +73,34 @@ const on = (channel: Channels, func: (...args: unknown[]) => void) => {
     };
 };
 const electronHandler = {
+    subtitleTimestampRecord: async (
+        e: InsertSubtitleTimestampAdjustment
+    ): Promise<void> => {
+        await invoke('subtitle-timestamp-record', e);
+    },
+    subtitleTimestampDeleteByKey: async (key: string): Promise<void> => {
+        await invoke('subtitle-timestamp-delete-key', key);
+    },
+    subtitleTimestampDeleteByPath: async (
+        subtitlePath: string
+    ): Promise<void> => {
+        await invoke('subtitle-timestamp-delete-path', subtitlePath);
+    },
+    subtitleTimestampGetByKey: async (
+        key: string
+    ): Promise<SubtitleTimestampAdjustment | undefined> => {
+        return (await invoke('subtitle-timestamp-get-key', key)) as
+            | SubtitleTimestampAdjustment
+            | undefined;
+    },
+    subtitleTimestampGetByPath: async (
+        subtitlePath: string
+    ): Promise<SubtitleTimestampAdjustment[]> => {
+        return (await invoke(
+            'subtitle-timestamp-get-path',
+            subtitlePath
+        )) as SubtitleTimestampAdjustment[];
+    },
     storeSet: async (key: SettingKey, value: string|null|undefined) => {
         await invoke('store-set', key, value);
     },
@@ -129,7 +161,7 @@ const electronHandler = {
         return (await invoke('query-progress', videoId)) as WatchProjectVideo;
     },
     checkUpdate: async () => {
-        return (await invoke('check-update')) as Release | undefined;
+        return (await invoke('check-update')) as Release[];
     },
     markWordLevel: async (word: string, familiar: boolean) => {
         return (await invoke('mark-word-level', word, familiar)) as void;

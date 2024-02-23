@@ -14,9 +14,9 @@
     "jsx": "react-jsx",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src/*",
       ]
     }
   },
-  "include": ["src"]
+  "include": ["src","assets"]
 }

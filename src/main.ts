@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import {app, BrowserWindow, protocol} from 'electron';
 import path from 'path';
 import registerHandler from "@/backend/dispatcher";
 import runMigrate from "@/backend/db/migrate";
@@ -37,6 +37,15 @@ const createWindow = () => {
 app.on('ready', async () => {
   await runMigrate();
   createWindow();
+  protocol.registerFileProtocol('dp', (request, callback) => {
+    const url: string = request.url.replace('dp:///', '');
+    try {
+      return callback(decodeURIComponent(url));
+    } catch (error) {
+      console.error(error);
+      return callback('');
+    }
+  });
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

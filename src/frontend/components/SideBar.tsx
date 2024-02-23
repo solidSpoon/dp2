@@ -8,7 +8,7 @@ import {
 } from 'react-icons/hi';
 import React, { cloneElement, ReactElement } from 'react';
 import { cn } from '@/common/utils/Util';
-// import logoLight from '../../../assets/logo-light.png';
+import logoLight from '../../../assets/logo-light.png';
 import useFile from '../hooks/useFile';
 
 export interface SideBarProps {
@@ -59,7 +59,7 @@ const SideBar = ({ compact }: SideBarProps) => {
                         'w-24 h-24 user-drag-none',
                         compact && 'w-14 h-14'
                     )}
-                    // src={logoLight}
+                    src={logoLight}
                 />
             </div>
             <div className={cn('basis-3/4 flex flex-col p-3 gap-1')}>

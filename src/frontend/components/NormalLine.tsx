@@ -3,7 +3,7 @@ import hash from '../../common/utils/hash';
 import usePlayerController from '../hooks/usePlayerController';
 import { cn } from '@/common/utils/Util';
 import useSetting from '../hooks/useSetting';
-import { FontSize } from '../styles/style';
+import { FONT_SIZE } from '../styles/style';
 
 interface NormalLineParam {
     text: string;
@@ -64,9 +64,9 @@ const NormalLine = ({ text, order }: NormalLineParam) => {
     return (
         <div
             className={cn(`my-0 mx-10 py-2.5 px-1 text-mainSubtitleTwoColor`,
-                fontSize === 'fontSizeSmall' &&(order === 'second' ? FontSize.mainSubtitleTwo.small : FontSize.mainSubtitleThree.small),
-                fontSize === 'fontSizeMedium' &&(order === 'second' ? FontSize.mainSubtitleTwo.medium : FontSize.mainSubtitleThree.medium),
-                fontSize === 'fontSizeLarge' &&(order === 'second' ? FontSize.mainSubtitleTwo.large : FontSize.mainSubtitleThree.large),
+                fontSize === 'fontSizeSmall' &&(order === 'second' ? FONT_SIZE["ms2-small"] : FONT_SIZE["ms3-small"]),
+                fontSize === 'fontSizeMedium' &&(order === 'second' ? FONT_SIZE["ms2-medium"] : FONT_SIZE["ms3-medium"]),
+                fontSize === 'fontSizeLarge' &&(order === 'second' ? FONT_SIZE["ms2-large"] : FONT_SIZE["ms3-large"]),
                 )}
         >
             {words.map((w) => {

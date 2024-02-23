@@ -8,6 +8,7 @@ import SentenceT from '../../common/types/SentenceT';
 import useSetting from '../hooks/useSetting';
 import usePlayerController from '../hooks/usePlayerController';
 import { cn } from '@/common/utils/Util';
+import {darkColor, lightColor} from "@/frontend/styles/style";
 
 interface SideSentenceNewParam {
     sentence: SentenceT;
@@ -36,12 +37,15 @@ const SideSentence = forwardRef<HTMLDivElement, SideSentenceNewParam>(
             );
         };
 
+        const a ="bg-stone-100";
         return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
             <div
                 className={cn(
-                    'm-1.5 mr-0 px-1 py-2 border-0 flex gap-1 content-start rounded-lg bg-sentenceBackground',
-                    'hover:drop-shadow-lg hover:bg-sentenceHoverBackground text-subtitle drop-shadow'
+                    'm-1.5 mr-0 px-1 py-2 border-0 flex gap-1 content-start rounded-lg',
+                    'hover:drop-shadow-lg text-subtitle drop-shadow',
+                    `bg-stone-200 dark:bg-neutral-700`,
+                    `hover:bg-stone-100 dark:hover:bg-neutral-600`
                 )}
                 onClick={() => {
                     onClick(sentence);
@@ -50,10 +54,11 @@ const SideSentence = forwardRef<HTMLDivElement, SideSentenceNewParam>(
             >
                 <div
                     className={cn(
-                        'flex flex-col items-center justify-center text-playIcon',
+                        'flex flex-col items-center justify-center',
                         isCurrent ? 'visible' : 'invisible',
                         fontSize === 'fontSizeSmall' ? 'w-5 h-5' : 'w-7 h-7',
-                        fontSize === 'fontSizeSmall' ? 'text-base' : 'text-lg'
+                        fontSize === 'fontSizeSmall' ? 'text-base' : 'text-lg',
+                        `text-red-500 dark:text-red-600`
                     )}
                 >
                     {icon()}
