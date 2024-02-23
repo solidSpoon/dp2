@@ -1,11 +1,14 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
+import registerHandler from "@/backend/dispatcher";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
-
+const mainWindowRef = {
+  current: null as BrowserWindow | null,
+}
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -15,7 +18,7 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-
+  mainWindowRef.current = mainWindow;
   // and load the index.html of the app.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
@@ -40,7 +43,7 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-
+registerHandler(mainWindowRef);
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
