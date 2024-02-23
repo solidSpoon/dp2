@@ -1,11 +1,8 @@
 import { ipcMain } from 'electron';
 import log from 'electron-log';
 import axios from 'axios';
-import fs from 'fs';
 import {
-    queryVideoProgress,
-    recentWatch,
-    reloadRecentFromDisk,
+    queryVideoProgress, recentWatch, reloadRecentFromDisk,
     updateVideoProgress,
 } from './controllers/ProgressController';
 import batchTranslate from './controllers/Translate';
@@ -17,21 +14,19 @@ import {
 } from './controllers/StorageController';
 import { appVersion, checkUpdate } from './controllers/CheckUpdate';
 import { WindowState } from '@/common/types/Types';
-import {
-    readFromClipboard,
-    writeToClipboard,
-} from './controllers/ClopboardController';
-import processSentences from './controllers/SubtitleProcesser';
 import { WatchProjectVideo } from '@/backend/db/tables/watchProjectVideos';
-import WatchProjectService from './services/WatchProjectService';
 import { SettingKey } from '@/common/types/store_schema';
 import { storeGet } from './store';
-import SubtitleTimestampAdjustmentController from './controllers/SubtitleTimestampAdjustmentController';
+import {Channels} from "@/preload";
+import SubtitleTimestampAdjustmentController from "@/backend/controllers/SubtitleTimestampAdjustmentController";
 import {
     InsertSubtitleTimestampAdjustment,
-    SubtitleTimestampAdjustment,
-} from '@/backend/db/tables/subtitleTimestampAdjustment';
-import {Channels} from "@/preload";
+    SubtitleTimestampAdjustment
+} from "@/backend/db/tables/subtitleTimestampAdjustment";
+import WatchProjectService from "@/backend/services/WatchProjectService";
+import {readFromClipboard, writeToClipboard} from "@/backend/controllers/ClopboardController";
+import processSentences from "@/backend/controllers/SubtitleProcesser";
+import fs from "fs";
 
 const { shell } = require('electron');
 
@@ -228,9 +223,9 @@ export default function registerHandler(mainWindowRef: { current: Electron.Cross
     handle('read-from-clipboard', async () => {
         return readFromClipboard();
     });
-    handle('process-sentences', async (sentences: string[]) => {
-        return processSentences(sentences);
-    });
+    // handle('process-sentences', async (sentences: string[]) => {
+    //     return processSentences(sentences);
+    // });
     handle('select-file', async (isFolder: boolean) => {
         return WatchProjectService.selectFiles(isFolder);
     });
