@@ -37,7 +37,6 @@ const SideSentence = forwardRef<HTMLDivElement, SideSentenceNewParam>(
             );
         };
 
-        const a ="bg-stone-100";
         return (
             // eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
             <div

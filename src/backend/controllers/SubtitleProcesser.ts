@@ -74,16 +74,22 @@ class SentenceHolder {
         this.index = 0;
     }
 
+    /**
+     * sentence 从start开始截取length长度的字符串, 并返回. 同时更新index
+     *
+     * @param start
+     * @param length
+     */
     sub(start: number, length: number) {
-        this.sentence = this.sentence.substring(start, start + length);
+        const res = this.sentence.substring(start, start + length);
         this.index = start + length;
-        return this.sentence;
+        return res;
     }
 
     subTo(index: number) {
-        this.sentence = this.sentence.substring(this.index, index);
+        const res = this.sentence.substring(this.index, index);
         this.index = index;
-        return this.sentence;
+        return res;
     }
 }
 
@@ -93,6 +99,7 @@ const processSentence = (sentence: string): SentenceStruct => {
     const blocks: SentenceBlockBySpace[] = [];
     let blockParts: SentenceBlockPart[] = [];
     for (const token of tokens) {
+        console.log(token.pos)
         const pw = holder.subTo(token.pos.start);
         if (pw.length > 0) {
             if (strBlank(pw)) {
@@ -121,6 +128,7 @@ const processSentence = (sentence: string): SentenceStruct => {
     if (blockParts.length > 0) {
         blocks.push({blockParts});
     }
+    console.log('aafff',blocks);
     return {
         original: sentence,
         blocks: blocks,

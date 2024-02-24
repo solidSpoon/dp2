@@ -36,6 +36,7 @@ const TranslatableLine = ({
     const sentenceStruct = usePlayerController((state) =>
         state.subTitlesStructure.get(p(text))
     );
+    console.log('sentenceStruct', sentenceStruct);
     console.log('TranslatableLine', text, 'dd');
     const [popELe, setPopEle] = useState<string | null>(null);
     const [hovered, setHovered] = useState(false);
