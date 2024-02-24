@@ -12,6 +12,8 @@ export default defineConfig({
     },
   },
   build: {
+    // https://github.com/electron/forge/issues/3398
+    sourcemap: true,
     rollupOptions: {
       external: [
         'better-sqlite3',
