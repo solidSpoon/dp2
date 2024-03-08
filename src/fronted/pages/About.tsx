@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { cn } from '@/common/utils/Util';
-import AboutBg from '@/frontend/components/bg/AboutBg';
-import Separator from '@/frontend/components/Separtor';
+import AboutBg from '@/fronted/components/bg/AboutBg';
+import Separator from '@/fronted/components/Separtor';
 // import logoDark from '../../../../../assets/logo-dark.png';
 import logoLight from '../../../assets/logo-light.png';
-import useSystem from '@/frontend/hooks/useSystem';
+import useSystem from '@/fronted/hooks/useSystem';
 
 const api = window.electron;
 const About = () => {

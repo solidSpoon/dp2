@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Header from '@/frontend/components/setting/Header';
-import ItemWrapper from '@/frontend/components/setting/ItemWrapper';
-import FooterWrapper from '@/frontend/components/setting/FooterWrapper';
-import SettingButton from '@/frontend/components/setting/SettingButton';
+import Header from '@/fronted/components/setting/Header';
+import ItemWrapper from '@/fronted/components/setting/ItemWrapper';
+import FooterWrapper from '@/fronted/components/setting/FooterWrapper';
+import SettingButton from '@/fronted/components/setting/SettingButton';
 
 const api = window.electron;
 const StorageSetting = () => {

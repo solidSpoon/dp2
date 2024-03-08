@@ -8,7 +8,7 @@ import SentenceT from '../../common/types/SentenceT';
 import useSetting from '../hooks/useSetting';
 import usePlayerController from '../hooks/usePlayerController';
 import { cn } from '@/common/utils/Util';
-import {darkColor, lightColor} from "@/frontend/styles/style";
+import {darkColor, lightColor} from "@/fronted/styles/style";
 
 interface SideSentenceNewParam {
     sentence: SentenceT;

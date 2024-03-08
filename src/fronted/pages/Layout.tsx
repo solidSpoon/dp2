@@ -2,8 +2,8 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { cn } from '@/common/utils/Util';
-import useLayout, { cpW } from '@/frontend/hooks/useLayout';
-import SideBar from '@/frontend/components/SideBar';
+import useLayout, { cpW } from '@/fronted/hooks/useLayout';
+import SideBar from '@/fronted/components/SideBar';
 
 const Layout = () => {
     const showSideBar = useLayout((s) => s.showSideBar) || true;

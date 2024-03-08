@@ -7,7 +7,7 @@ export interface MySliderProps {
     className?: string;
     sliderClassName?: string;
 }
-const Slider = ({ className, sliderClassName, ...props }: MySliderProps) => (
+const MySlider = ({ className, sliderClassName, ...props }: MySliderProps) => (
     // <SliderPrimitive.Root
     //     className={cn(
     //         'relative flex w-full touch-none select-none items-center',
@@ -28,8 +28,8 @@ const Slider = ({ className, sliderClassName, ...props }: MySliderProps) => (
     <></>
 );
 // Slider.displayName = SliderPrimitive.Root.displayName;
-Slider.defaultProps = {
+MySlider.defaultProps = {
     className: '',
     sliderClassName: 'bg-background',
 };
-export { Slider };
+export { MySlider };

@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { GoHistory } from 'react-icons/go';
 import { IoRefreshCircleOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import useSystem from '@/frontend/hooks/useSystem';
-import TitleBar from '@/frontend/components/TitleBar/TitleBar';
-import useSetting from '@/frontend/hooks/useSetting';
+import useSystem from '@/fronted/hooks/useSystem';
+import TitleBar from '@/fronted/components/TitleBar/TitleBar';
+import useSetting from '@/fronted/hooks/useSetting';
 import { cn } from '@/common/utils/Util';
-import FileSelector from '@/frontend/components/fileBowser/FileSelector';
-import useProjectBrowser from '@/frontend/hooks/useProjectBrowser';
+import FileSelector from '@/fronted/components/fileBowser/FileSelector';
+import useProjectBrowser from '@/fronted/hooks/useProjectBrowser';
 import logoLight from '../../../assets/logo-light.png';
 import logoDark from '../../../assets/logo-dark.png';
-import useLayout from '@/frontend/hooks/useLayout';
-import FileItem from '@/frontend/components/fileBowser/FileItem';
-import useFile from '@/frontend/hooks/useFile';
+import useLayout from '@/fronted/hooks/useLayout';
+import FileItem from '@/fronted/components/fileBowser/FileItem';
+import useFile from '@/fronted/hooks/useFile';
 
 const api = window.electron;
 const HomePage = () => {

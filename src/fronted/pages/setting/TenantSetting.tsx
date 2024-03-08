@@ -1,9 +1,9 @@
-import SettingButton from '@/frontend/components/setting/SettingButton';
-import SettingInput from '@/frontend/components/setting/SettingInput';
-import ItemWrapper from '@/frontend/components/setting/ItemWrapper';
-import FooterWrapper from '@/frontend/components/setting/FooterWrapper';
-import Header from '@/frontend/components/setting/Header';
-import useSettingForm from '@/frontend/hooks/useSettingForm';
+import SettingButton from '@/fronted/components/setting/SettingButton';
+import SettingInput from '@/fronted/components/setting/SettingInput';
+import ItemWrapper from '@/fronted/components/setting/ItemWrapper';
+import FooterWrapper from '@/fronted/components/setting/FooterWrapper';
+import Header from '@/fronted/components/setting/Header';
+import useSettingForm from '@/fronted/hooks/useSettingForm';
 import { cn } from '@/common/utils/Util';
 
 const api = window.electron;

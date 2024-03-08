@@ -58,8 +58,10 @@ const TranslatableLine = ({
                 setHovered(false);
             }}
             className={cn(
-                'flex justify-between items-start rounded-lg drop-shadow-md text-mainSubtitleOneColor mx-10 mt-2.5 shadow-inner shadow-sentenceInnerShadow z-50',
-                'bg-sentenceBackground',
+                'flex justify-between items-start rounded-lg drop-shadow-md mx-10 mt-2.5 shadow-inner z-50',
+                'bg-stone-200 dark:bg-neutral-700',
+                'text-stone-700 dark:bg-neutral-100',
+                'shadow-stone-100 dark:shadow-neutral-600',
                 FONT_SIZE["ms1-large"],
                 fontSize === 'fontSizeSmall' && FONT_SIZE["ms1-small"],
                 fontSize === 'fontSizeMedium' &&

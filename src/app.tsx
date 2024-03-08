@@ -1,21 +1,22 @@
 import {createRoot} from 'react-dom/client';
 import React, { useEffect } from 'react';
-import useSetting from './frontend/hooks/useSetting';
-import FileDrop from "@/frontend/components/FileDrop";
+import useSetting from '@/fronted/hooks/useSetting';
+import FileDrop from "@/fronted/components/FileDrop";
 import {HashRouter, Route, Routes} from "react-router-dom";
-import HomePage from "@/frontend/pages/HomePage";
-import TitleBarLayout from "@/frontend/pages/TieleBarLayout";
-import PlayerP from "@/frontend/pages/PlayerP";
-import Layout from "@/frontend/pages/Layout";
-import About from "@/frontend/pages/About";
-import SettingLayout from "@/frontend/pages/setting/SettingLayout";
-import ShortcutSetting from "@/frontend/pages/setting/ShortcutSetting";
-import YouDaoSetting from "@/frontend/pages/setting/YouDaoSetting";
-import TenantSetting from "@/frontend/pages/setting/TenantSetting";
-import StorageSetting from "@/frontend/pages/setting/StorageSetting";
-import CheckUpdate from "@/frontend/pages/setting/CheckUpdate";
-import AppearanceSetting from "@/frontend/pages/setting/AppearanceSetting";
+import HomePage from "@/fronted/pages/HomePage";
+import TitleBarLayout from "@/fronted/pages/TieleBarLayout";
+import PlayerP from "@/fronted/pages/PlayerP";
+import Layout from "@/fronted/pages/Layout";
+import About from "@/fronted/pages/About";
+import SettingLayout from "@/fronted/pages/setting/SettingLayout";
+import ShortcutSetting from "@/fronted/pages/setting/ShortcutSetting";
+import YouDaoSetting from "@/fronted/pages/setting/YouDaoSetting";
+import TenantSetting from "@/fronted/pages/setting/TenantSetting";
+import StorageSetting from "@/fronted/pages/setting/StorageSetting";
+import CheckUpdate from "@/fronted/pages/setting/CheckUpdate";
+import AppearanceSetting from "@/fronted/pages/setting/AppearanceSetting";
 import {Toaster} from "react-hot-toast";
+import {syncStatus} from "@/fronted/hooks/useSystem";
 
 const App = () => {
 
@@ -92,3 +93,4 @@ const App = () => {
 
 const root = createRoot(document.body);
 root.render(<App/>);
+syncStatus(true);

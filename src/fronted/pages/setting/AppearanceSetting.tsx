@@ -1,14 +1,14 @@
-import SettingButton from '@/frontend/components/setting/SettingButton';
+import SettingButton from '@/fronted/components/setting/SettingButton';
 import {
     ItemWrapper,
     FooterWrapper,
     Header,
     SliderInput,
     Title,
-} from '@/frontend/components/setting';
-import ThemePreview from '@/frontend/components/ThemePreview';
-import useSettingForm from '@/frontend/hooks/useSettingForm';
-import Separator from '@/frontend/components/Separtor';
+} from '@/fronted/components/setting';
+import ThemePreview from '@/fronted/components/ThemePreview';
+import useSettingForm from '@/fronted/hooks/useSettingForm';
+import Separator from '@/fronted/components/Separtor';
 import { cn } from '@/common/utils/Util';
 
 const AppearanceSetting = () => {

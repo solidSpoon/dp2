@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { FaVolumeHigh, FaVolumeLow } from 'react-icons/fa6';
 import { FaVolumeMute } from 'react-icons/fa';
-import { Slider } from './Slider';
+import { MySlider } from './MySlider';
 import { IoVolumeHigh, IoVolumeLow, IoVolumeMute, IoVolumeOff } from 'react-icons/io5';
+import {Slider} from "@/fronted/components/ui/slider";
 
 export interface VolumeSliderProps {
     volume: number;
@@ -30,7 +31,7 @@ const VolumeSlider = ({ volume, onVolumeChange }: VolumeSliderProps) => {
                 {/*{localVolume === 0 && <IoVolumeMute className="h-8 w-8" />}*/}
             </div>
             <Slider
-                className="bg-white/20 w-24"
+                className="w-24"
                 max={100}
                 min={0}
                 defaultValue={[volume * 100]}

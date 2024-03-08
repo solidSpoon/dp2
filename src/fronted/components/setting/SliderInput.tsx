@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Slider } from '../Slider';
-import { cn } from '../../../common/utils/Util';
+import { cn } from '@/fronted/lib/utils';
+import {Slider} from "@/fronted/components/ui/slider";
 
 export interface SliderInputProps {
     title: string;
@@ -24,10 +24,10 @@ const SliderInput = ({
         <div className="flex items-center gap-4  text-gray-700 select-none">
             <div className="text-right w-28">{title} :</div>
             <Slider
-                sliderClassName="bg-stone-300"
-                className={cn('border rounded', inputWidth)}
-                max={values.length - 1}
+                step={1}
                 min={0}
+                max={values.length - 1}
+                className={cn('w-44', inputWidth)}
                 value={[values.indexOf(localValue)]}
                 onValueChange={(value) => {
                     setLocalValue(values[value[0]]);

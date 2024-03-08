@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
-import { Slider } from './Slider';
 import VolumeSlider from './VolumeSlider';
 import usePlayerController from '../hooks/usePlayerController';
 import { cn, secondToDate } from '@/common/utils/Util';
 import SpeedSlider from './speed-slider';
+import {Slider} from "@/fronted/components/ui/slider";
 
 export interface PlayerControlPannelProps {
     className?: string;
@@ -97,7 +97,7 @@ const PlayerControlPannel = ({
             )}
         >
             <div
-                className={cn('pt-8', mouseOverOut && 'bg-gradient-to-t from-black/25 to-transparent')}
+                className={cn('pt-8', mouseOverOut && 'bg-gradient-to-t from-black/25 to-transparent bg-white')}
                 onMouseMove={(e) => {
                     e.stopPropagation();
                     handleMouseMoveIn();
@@ -112,7 +112,7 @@ const PlayerControlPannel = ({
                 >
                     {mouseOverOut && (<>
                     <Slider
-                        className="bg-white/50"
+                        className=""
                         max={duration}
                         min={0}
                         value={[currentValue]}

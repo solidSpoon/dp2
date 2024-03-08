@@ -9,7 +9,7 @@ import {
     MdTranslate,
 } from 'react-icons/md';
 import { cn } from '@/common/utils/Util';
-import Separator from '@/frontend/components/Separtor';
+import Separator from '@/fronted/components/Separtor';
 
 export type SettingType =
     | 'you-dao'
