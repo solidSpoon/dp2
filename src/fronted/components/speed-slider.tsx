@@ -61,7 +61,7 @@ const SpeedSlider = ({ speed, onSpeedChange }: VolumeSliderProps) => {
                     onClick={() => {
                         setOpen(!open);
                     }}
-                    className={cn('h-8 bg-white/90 rounded text-neutral-500 font-bold grid place-content-center px-2')}>
+                    className={cn('bg-white/90 rounded text-neutral-500 font-bold grid place-content-center px-2')}>
                     <span>{speed.toFixed(2)}x</span>
                 </div>
             </div>

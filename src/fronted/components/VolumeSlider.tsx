@@ -21,7 +21,7 @@ const VolumeSlider = ({ volume, onVolumeChange }: VolumeSliderProps) => {
                         onVolumeChange(0);
                     }
                 }}
-                className="h-8 w-14 flex items-center justify-center rounded-full bg-white/90 pr-2 pl-1 text-neutral-500"
+                className="w-14 flex items-center justify-center rounded-full bg-white/90 pr-2 pl-1 text-neutral-500"
             >
                 <IoVolumeOff className="h-6 w-6" /> {Math.floor(localVolume * 100)}
                 {/*{localVolume > 0.5 && <IoVolumeHigh className="h-8 w-8" />}*/}

@@ -92,12 +92,12 @@ const PlayerControlPannel = ({
             onMouseMove={handleMouseMove}
             onMouseLeave={onMouseLeave}
             className={cn(
-                'w-full flex flex-col-reverse pt-10 h-full text-white/80',
+                'w-full flex flex-col-reverse pt-10 h-full text-white/80 p-2 px-4',
                 className
             )}
         >
             <div
-                className={cn('pt-8', mouseOverOut && 'bg-gradient-to-t from-black/25 to-transparent bg-white')}
+                className={cn('p-5 pb-4 rounded-3xl', mouseOverOut && 'bg-white')}
                 onMouseMove={(e) => {
                     e.stopPropagation();
                     handleMouseMoveIn();
@@ -106,7 +106,7 @@ const PlayerControlPannel = ({
             >
                 <div
                     className={cn(
-                        'flex flex-col items-center w-full gap-2 h-16 px-2',
+                        'flex flex-col items-center justify-between w-full gap-2',
                         // !mouseOverOut && 'invisible'
                     )}
                 >
@@ -128,7 +128,7 @@ const PlayerControlPannel = ({
                             setSelecting(false);
                         }}
                     />
-                    <div className="w-full flex justify-between px-2">
+                    <div className="w-full flex justify-between items-end">
                         <div className="flex gap-4">
                             <div
                                 onClick={() => {
@@ -141,9 +141,9 @@ const PlayerControlPannel = ({
                                 className="flex justify-center items-center rounded-lg"
                             >
                                 {playing ? (
-                                    <FaPause className="w-6 h-6" />
+                                    <FaPause className="w-6 h-6 fill-black" />
                                 ) : (
-                                    <FaPlay className="w-6 h-6" />
+                                    <FaPlay className="w-6 h-6  fill-black" />
                                 )}
                             </div>
                             <div className=" h-full flex items-center">
@@ -153,7 +153,7 @@ const PlayerControlPannel = ({
                             </div>
                         </div>
                         <div className="h-full flex-1" />
-                        <div className="flex justify-center items-center gap-4">
+                        <div className="flex justify-center items-end gap-4">
                             <SpeedSlider
                                 speed={playbackRate}
                                 onSpeedChange={setPlaybackRate}
