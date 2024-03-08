@@ -46,6 +46,7 @@
     "@floating-ui/react": "^0.26.9",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@turf/turf": "^6.5.0",
     "@vitejs/plugin-react": "^4.2.1",

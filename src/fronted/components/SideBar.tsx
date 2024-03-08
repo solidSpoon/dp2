@@ -70,12 +70,12 @@ const SideBar = ({ compact }: SideBarProps) => {
                     'player',
                     <HiOutlineVideoCamera />
                 )}
-                {item(
-                    'Word Management',
-                    '/word-management',
-                    'word-management',
-                    <HiOutlineAcademicCap />
-                )}
+                {/*{item(*/}
+                {/*    'Word Management',*/}
+                {/*    '/word-management',*/}
+                {/*    'word-management',*/}
+                {/*    <HiOutlineAcademicCap />*/}
+                {/*)}*/}
                 {item('Setting', '/settings', 'settings', <HiOutlineCog />)}
                 {item('About', '/about', 'about', <HiOutlineUser />)}
             </div>

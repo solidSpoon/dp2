@@ -1,5 +1,5 @@
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import React, { cloneElement, ReactElement } from 'react';
+import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
+import React, {cloneElement, ReactElement} from 'react';
 import {
     MdBuild,
     MdColorLens,
@@ -8,8 +8,9 @@ import {
     MdStorage,
     MdTranslate,
 } from 'react-icons/md';
-import { cn } from '@/common/utils/Util';
+import {cn} from '@/common/utils/Util';
 import Separator from '@/fronted/components/Separtor';
+import {buttonVariants} from "@/fronted/components/ui/button";
 
 export type SettingType =
     | 'you-dao'
@@ -28,32 +29,49 @@ const Sidebar = () => {
                 : location.pathname;
         const isCurrent = pathname.includes(key);
         return (
-            <ul
-                onClick={() => {
-                    const s = `/settings/${key}`;
-                    console.log(s);
-                    navigate(s);
-                }}
+            // <ul
+            //     onClick={() => {
+            //         const s = `/settings/${key}`;
+            //         console.log(s);
+            //         navigate(s);
+            //     }}
+            //     className={cn(
+            //         `flex justify-start items-center overflow-hidden h-12 py-1 px-5 rounded-lg gap-4 hover:underline`,
+            //         isCurrent && 'bg-black/5'
+            //     )}
+            // >
+            //     {cloneElement(icon, {
+            //         className: cn('w-6 h-6 fill-gray-600'),
+            //     })}
+            //     {name}
+            // </ul>
+            <Link
+                // key={item.href}
+                to={`/settings/${key}`}
                 className={cn(
-                    `flex justify-start items-center overflow-hidden h-12 py-1 px-5 rounded-lg gap-4 hover:underline`,
-                    isCurrent && 'bg-black/5'
+                    buttonVariants({variant: "ghost"}),
+                    'gap-2 text-base',
+                    isCurrent
+                        ? "bg-muted hover:bg-muted"
+                        : "hover:bg-transparent hover:underline",
+                    "justify-start"
                 )}
             >
                 {cloneElement(icon, {
                     className: cn('w-6 h-6 fill-gray-600'),
                 })}
                 {name}
-            </ul>
+            </Link>
         );
     };
     return (
         <div className="w-full h-full flex flex-col gap-2">
-            {ele('快捷键', 'shortcut', <MdKeyboard />)}
-            {ele('外观', 'appearance', <MdColorLens />)}
-            {ele('字幕翻译', 'tenant', <MdOutlineGTranslate />)}
-            {ele('查单词', 'you-dao', <MdTranslate />)}
-            {ele('存储', 'storage', <MdStorage />)}
-            {ele('版本更新', 'update', <MdBuild />)}
+            {ele('快捷键', 'shortcut', <MdKeyboard/>)}
+            {ele('外观', 'appearance', <MdColorLens/>)}
+            {ele('字幕翻译', 'tenant', <MdOutlineGTranslate/>)}
+            {ele('查单词', 'you-dao', <MdTranslate/>)}
+            {ele('存储', 'storage', <MdStorage/>)}
+            {ele('版本更新', 'update', <MdBuild/>)}
         </div>
     );
 };
@@ -72,15 +90,15 @@ const SettingLayout = () => {
                 <h2 className={cn('text-xl text-neutral-500 mt-2 mb-4')}>
                     Dash Player
                 </h2>
-                <Separator orientation="horizontal" className="px-0" />
+                <Separator orientation="horizontal" className="px-0"/>
             </div>
 
             <div className="flex flex-1 h-0 gap-8">
                 <aside className="w-56 flex-shrink-0">
-                    <Sidebar />
+                    <Sidebar/>
                 </aside>
                 <main role="main" className="w-[1000px] overflow-hidden h-full">
-                    <Outlet />
+                    <Outlet/>
                 </main>
             </div>
         </div>

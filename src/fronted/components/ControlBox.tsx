@@ -10,6 +10,7 @@ import Button from './Button';
 import {sentenceClearAllAdjust} from '../hooks/usePlayerControllerSlices/createSentenceSlice';
 import {Switch} from "@/fronted/components/ui/switch";
 import {Label} from './ui/label';
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/fronted/components/ui/card";
 
 const ControlBox = () => {
     const w = cpW.bind(
@@ -45,21 +46,29 @@ const ControlBox = () => {
     );
 
     return (
-        <div
-            className={twMerge(
-                'flex justify-center items-center gap-4 p-8 rounded-lg w-full h-full text-black flex-col',
-                'drop-shadow-lg  bg-white/90',
-                h('md') && 'gap-1 p-2',
-                h('xl') && 'gap-4 p-8'
-            )}
-        >
-            <div className={cn('text-xl font-bold w-full')}>控制中心</div>
-            <div
-                className={cn(
-                    'flex gap-16 flex-wrap items-center justify-start  flex-1 w-full h-0 overflow-auto',
-                    'scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded'
-                )}
+        <Card
+            // className={twMerge(
+            //     'flex justify-center items-center gap-4 p-8 rounded-lg w-full h-full text-black flex-col',
+            //     'drop-shadow-lg  bg-white/90',
+            //     h('md') && 'gap-1 p-2',
+            //     h('xl') && 'gap-4 p-8'
+            // )}
+            className={cn('w-full h-full flex flex-col')}
+        ><CardHeader>
+            <CardTitle>Control Center</CardTitle>
+            <CardDescription>Control the subtitle and video</CardDescription>
+        </CardHeader>
+            <CardContent
+                className={cn("flex gap-x-16 gap-y-2 overflow-auto flex-wrap w-full h-0 flex-1",
+                    "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded"
+                    )}
             >
+                {/*<div*/}
+                {/*    className={cn(*/}
+                {/*        'flex gap-16 flex-wrap items-center justify-start  flex-1 w-full h-0 overflow-auto',*/}
+                {/*        'scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded'*/}
+                {/*    )}*/}
+                {/*>*/}
                 <div className="flex items-center space-x-2">
                     <Switch
                         checked={showEn}
@@ -104,8 +113,9 @@ const ControlBox = () => {
                 >
                     <AiOutlineFieldTime/>
                 </Button>
-            </div>
-        </div>
+                {/*</div>*/}
+            </CardContent>
+        </Card>
     );
 };
 
