@@ -16,6 +16,7 @@ import {
     BreadcrumbLink,
     BreadcrumbList, BreadcrumbSeparator
 } from "@/fronted/components/ui/breadcrumb";
+import FileSelector2 from "@/fronted/components/fileBowser/FileSelector2";
 
 const FileBrowser = () => {
     const navigate = useNavigate();
@@ -41,14 +42,20 @@ const FileBrowser = () => {
             </CardHeader>
             <CardContent className={cn('h-0 flex-1 w-full flex flex-col gap-2')}>
                 <div
-                    className={cn('justify-self-end flex mb-10 flex-wrap w-full justify-center items-center gap-2 h-20 rounded border border-dashed p-2')}
+                    className={cn('justify-self-end flex mb-10 flex-wrap w-full justify-center items-center gap-2 min-h-20 rounded border border-dashed p-2')}
                 >
-                    <Button
-                        variant={"outline"}
-                        className={cn('w-28')}
-                    >Open File</Button>
-
-                    <Button variant="outline" className={cn('w-28')}>Open Folder</Button>
+                    <FileSelector2
+                        directory={false}
+                        onSelected={refresh}
+                    />
+                    <FileSelector2
+                        directory={true}
+                        onSelected={refresh}
+                    />
+                    {/*<FileSelector */}
+                    {/*    */}
+                    {/*    ref={folderRef}*/}
+                    {/*    className={cn("hidden")} directory onSelected={refresh}/>*/}
                 </div>
                 <Breadcrumb>
                     <BreadcrumbList>
@@ -64,12 +71,6 @@ const FileBrowser = () => {
                         {/* ... */}
                     </BreadcrumbList>
                 </Breadcrumb>
-                {/*<FileSelector*/}
-                {/*    className="text-base"*/}
-                {/*    directory={false}*/}
-                {/*    onSelected={refresh}*/}
-                {/*/>*/}
-                {/*<FileSelector directory onSelected={refresh}/>*/}
                 {/*<div className={cn('w-full flex items-center gap-2')}>*/}
                 {/*    {path ? (*/}
                 {/*        <VscFolderOpened className="flex-shrink-0 w-4 h-4"/>*/}
