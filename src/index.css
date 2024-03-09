@@ -86,3 +86,7 @@
 .user-drag-none {
   -webkit-user-drag: none;
 }
+
+.ofvisible {
+  overflow: visible !important;
+}

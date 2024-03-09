@@ -226,6 +226,7 @@ const PlayerP = () => {
                                     ><Player/></ResizablePanel>
                                     <ResizableHandle withHandle className={cn('drop-shadow data-[panel-group-direction=vertical]:h-2 dark:bg-zinc-700')}/>
                                     <ResizablePanel
+                                        className={cn('ofvisible')}
                                         defaultSize={size.ib}
                                         onResize={(e) => {
                                             setSize(s => ({...s, ib: e}));
