@@ -63,7 +63,7 @@ const NormalLine = ({ text, order }: NormalLineParam) => {
     };
     return (
         <div
-            className={cn(`my-0 mx-10 py-2.5 px-1 text-mainSubtitleTwoColor`,
+            className={cn(`my-0 mx-10 py-2.5 px-1 text-stone-600 dark:text-neutral-300`,
                 fontSize === 'fontSizeSmall' &&(order === 'second' ? FONT_SIZE["ms2-small"] : FONT_SIZE["ms3-small"]),
                 fontSize === 'fontSizeMedium' &&(order === 'second' ? FONT_SIZE["ms2-medium"] : FONT_SIZE["ms3-medium"]),
                 fontSize === 'fontSizeLarge' &&(order === 'second' ? FONT_SIZE["ms2-large"] : FONT_SIZE["ms3-large"]),

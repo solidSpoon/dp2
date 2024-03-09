@@ -106,7 +106,7 @@ export default function Subtitle() {
                     defaultItemHeight={55}
                     ref={setVirtuoso}
                     className={twJoin(
-                        'h-full w-full overflow-y-scroll text-textColor',
+                        'h-full w-full overflow-y-scroll text-stone-600 dark:text-neutral-200',
                         'scrollbar-thumb-rounded',
                         'scrollbar-thin',
                         mouseOver &&

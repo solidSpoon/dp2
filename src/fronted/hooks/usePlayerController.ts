@@ -269,9 +269,10 @@ useFile.subscribe(
             inited = true;
             // eslint-disable-next-line no-await-in-loop
             const userCanSee = filterUserCanSee(finishedGroup, subtitle);
+            console.log('userCanSee', userCanSee);
             if (userCanSee.length > 0) {
                 // eslint-disable-next-line no-await-in-loop
-                await syncWordsLevel(userCanSee);
+                // await syncWordsLevel(userCanSee);
                 const transHolder = TransHolder.from(
                     // eslint-disable-next-line no-await-in-loop
                     await api.batchTranslate(

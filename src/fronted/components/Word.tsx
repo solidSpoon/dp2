@@ -153,7 +153,7 @@ const Word = ({ word, pop, requestPop, show }: WordParam) => {
                 ) : (
                     <div
                         className={twMerge(
-                            'hover:bg-wordHoverBackground rounded select-none',
+                            'hover:bg-stone-100 dark:hover:bg-neutral-600 rounded select-none',
                             !show && 'text-transparent bg-wordHoverBackground'
                         )}
                         onMouseLeave={() => {
