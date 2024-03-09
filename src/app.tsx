@@ -15,7 +15,9 @@ import TenantSetting from "@/fronted/pages/setting/TenantSetting";
 import StorageSetting from "@/fronted/pages/setting/StorageSetting";
 import CheckUpdate from "@/fronted/pages/setting/CheckUpdate";
 import AppearanceSetting from "@/fronted/pages/setting/AppearanceSetting";
-import {Toaster} from "react-hot-toast";
+import { Toaster } from "@/fronted/components/ui/sonner";
+import {Toaster as HotToaster} from "react-hot-toast";
+
 import {syncStatus} from "@/fronted/hooks/useSystem";
 
 const App = () => {
@@ -85,7 +87,8 @@ const App = () => {
                         </Routes>
                     </HashRouter>
                 </div>
-                <Toaster />
+                <Toaster position="bottom-left"/>
+                <HotToaster />
             </>
         </FileDrop>
     );

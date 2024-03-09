@@ -1,4 +1,3 @@
-import SettingButton from '@/fronted/components/setting/SettingButton';
 import {
     ItemWrapper,
     FooterWrapper,
@@ -10,6 +9,7 @@ import ThemePreview from '@/fronted/components/ThemePreview';
 import useSettingForm from '@/fronted/hooks/useSettingForm';
 import Separator from '@/fronted/components/Separtor';
 import { cn } from '@/common/utils/Util';
+import {Button} from "@/fronted/components/ui/button";
 
 const AppearanceSetting = () => {
     const { setting, setSetting, submit, eqServer } = useSettingForm([
@@ -52,8 +52,8 @@ const AppearanceSetting = () => {
                                     className={cn(
                                         'p-1 h-full rounded-lg',
                                         theme === t
-                                            ? 'border-2 border-black'
-                                            : 'border-2 border-gray-200'
+                                            ? 'border-2 border-primary'
+                                            : 'border-2 border-secondary'
                                     )}
                                 >
                                     <ThemePreview
@@ -88,7 +88,7 @@ const AppearanceSetting = () => {
                 />
             </ItemWrapper>
             <FooterWrapper>
-                <SettingButton disabled={eqServer} handleSubmit={submit} />
+                <Button disabled={eqServer} onClick={submit}>Apply</Button>
             </FooterWrapper>
         </form>
     );

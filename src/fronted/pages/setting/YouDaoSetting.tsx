@@ -1,10 +1,10 @@
 import SettingInput from '@/fronted/components/setting/SettingInput';
-import SettingButton from '@/fronted/components/setting/SettingButton';
 import FooterWrapper from '@/fronted/components/setting/FooterWrapper';
 import ItemWrapper from '@/fronted/components/setting/ItemWrapper';
 import Header from '@/fronted/components/setting/Header';
 import useSettingForm from '@/fronted/hooks/useSettingForm';
 import { cn } from '@/common/utils/Util';
+import {Button} from "@/fronted/components/ui/button";
 
 const api = window.electron;
 const YouDaoSetting = () => {
@@ -46,17 +46,22 @@ const YouDaoSetting = () => {
                 </div>
             </ItemWrapper>
             <FooterWrapper>
-                <SettingButton
-                    kind="secondary"
-                    handleSubmit={() => {
+                <Button
+                    onClick={() => {
                         api.openUrl(
                             'https://solidspoon.xyz/docs/dash-player/intro'
                         );
                     }}
+                    variant="secondary"
                 >
                     查看文档
-                </SettingButton>
-                <SettingButton handleSubmit={submit} disabled={eqServer} />
+                </Button>
+                <Button
+                    disabled={eqServer}
+                    onClick={submit}
+                >
+                    Apply
+                </Button>
             </FooterWrapper>
         </form>
     );

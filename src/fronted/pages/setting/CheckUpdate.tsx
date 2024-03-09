@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import Release from '@/common/types/release';
 import Header from '@/fronted/components/setting/Header';
 import ItemWrapper from '@/fronted/components/setting/ItemWrapper';
-import { SettingButton } from '@/fronted/components/setting';
 import FooterWrapper from '@/fronted/components/setting/FooterWrapper';
-import { cn } from '@/common/utils/Util';
+import {Button} from "@/fronted/components/ui/button";
 
 const api = window.electron;
 
@@ -46,16 +45,15 @@ const CheckUpdate = () => {
                 )}
             </ItemWrapper>
             <FooterWrapper>
-                <SettingButton
-                    handleSubmit={() => {
+                <Button
+                    onClick={() => {
                         api.openUrl(
-                                'https://github.com/solidSpoon/DashPlayer/releases/latest'
+                            'https://github.com/solidSpoon/DashPlayer/releases/latest'
                         );
                     }}
-                    disabled={false}
-                >
+                    >
                     前往发布页
-                </SettingButton>
+                </Button>
             </FooterWrapper>
         </div>
     );

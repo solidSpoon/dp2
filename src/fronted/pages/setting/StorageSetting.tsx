@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Header from '@/fronted/components/setting/Header';
 import ItemWrapper from '@/fronted/components/setting/ItemWrapper';
 import FooterWrapper from '@/fronted/components/setting/FooterWrapper';
-import SettingButton from '@/fronted/components/setting/SettingButton';
+import {Button} from "@/fronted/components/ui/button";
 
 const api = window.electron;
 const StorageSetting = () => {
@@ -45,16 +45,18 @@ const StorageSetting = () => {
                 </div>
             </ItemWrapper>
             <FooterWrapper>
-                <SettingButton
-                    kind="secondary"
+                <Button
+                    onClick={handleClear}
+                    variant="secondary"
                     disabled
-                    handleSubmit={handleClear}
                 >
                     清除一个月前的缓存
-                </SettingButton>
-                <SettingButton handleSubmit={handleOpen}>
+                </Button>
+                <Button
+                    onClick={handleOpen}
+                >
                     打开缓存文件夹
-                </SettingButton>
+                </Button>
             </FooterWrapper>
         </div>
     );

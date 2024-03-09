@@ -1,8 +1,7 @@
-import {twMerge} from 'tailwind-merge';
-import React from 'react';
+import React, {useState} from 'react';
 import {useShallow} from 'zustand/react/shallow';
 import {AiOutlineFieldTime} from 'react-icons/ai';
-import toast, {Toaster} from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import {cn} from '@/common/utils/Util';
 import usePlayerController from '../hooks/usePlayerController';
 import useLayout, {cpH, cpW} from '../hooks/useLayout';
@@ -45,6 +44,7 @@ const ControlBox = () => {
         }))
     );
 
+    const [clearAllAdjust, setClearAllAdjust] = useState(false)
     return (
         <Card
             // className={twMerge(
@@ -68,56 +68,64 @@ const ControlBox = () => {
                 }}
             >
                 {/*<div*/}
-                    {/*    className={cn(*/}
-                    {/*        'flex gap-16 flex-wrap items-center justify-start  flex-1 w-full h-0 overflow-auto',*/}
-                    {/*        'scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded'*/}
-                    {/*    )}*/}
-                    {/*>*/}
-                    <div className="flex items-center space-x-2">
-                        <Switch
-                            checked={showEn}
-                            onCheckedChange={() => changeShowEn()}
-                            id="showEn"
-                        />
-                        <Label htmlFor="showEn">展示英文字幕</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Switch
-                            checked={showCn}
-                            onCheckedChange={() => changeShowCn()}
-                            id="showCn"
-                        />
-                        <Label htmlFor="showCn">展示中文字幕</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Switch
-                            checked={showWordLevel}
-                            onCheckedChange={() => changeShowWordLevel()}
-                            id="showWordLevel"
-                        />
-                        <Label htmlFor="showWordLevel">展示生词翻译</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                        <Switch
-                            checked={singleRepeat}
-                            onCheckedChange={() => changeSingleRepeat()}
-                            id="singleRepeat"
-                        />
-                        <Label htmlFor="singleRepeat">单句循环</Label>
-                    </div>
-                    <Button
-                        onClick={() => {
+                {/*    className={cn(*/}
+                {/*        'flex gap-16 flex-wrap items-center justify-start  flex-1 w-full h-0 overflow-auto',*/}
+                {/*        'scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded'*/}
+                {/*    )}*/}
+                {/*>*/}
+                <div className="flex items-center space-x-2">
+                    <Switch
+                        checked={showEn}
+                        onCheckedChange={() => changeShowEn()}
+                        id="showEn"
+                    />
+                    <Label htmlFor="showEn">展示英文字幕</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <Switch
+                        checked={showCn}
+                        onCheckedChange={() => changeShowCn()}
+                        id="showCn"
+                    />
+                    <Label htmlFor="showCn">展示中文字幕</Label>
+                </div>
+                {/*<div className="flex items-center space-x-2">*/}
+                {/*    <Switch*/}
+                {/*        checked={showWordLevel}*/}
+                {/*        onCheckedChange={() => changeShowWordLevel()}*/}
+                {/*        id="showWordLevel"*/}
+                {/*    />*/}
+                {/*    <Label htmlFor="showWordLevel">展示生词翻译</Label>*/}
+                {/*</div>*/}
+                <div className="flex items-center space-x-2">
+                    <Switch
+                        checked={singleRepeat}
+                        onCheckedChange={() => changeSingleRepeat()}
+                        id="singleRepeat"
+                    />
+                    <Label htmlFor="singleRepeat">单句循环</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <Switch
+                        checked={clearAllAdjust}
+                        onCheckedChange={(c) => {
+                            if (!c) {
+                                return;
+                            }
+                            setClearAllAdjust(true);
+                            setTimeout(() => {
+                                setClearAllAdjust(false);
+                            }, 1000);
                             sentenceClearAllAdjust();
                             toast('清除了', {
                                 icon: '👏',
                             });
                         }}
-                        title="清除时间调整"
-                        className={cn()}
-                    >
-                        <AiOutlineFieldTime/>
-                    </Button>
-                    {/*</div>*/}
+                        id="clearAllAdjust"
+                    />
+                    <Label htmlFor="clearAllAdjust">清除时间调整</Label>
+                </div>
+                {/*</div>*/}
             </CardContent>
         </Card>
     );

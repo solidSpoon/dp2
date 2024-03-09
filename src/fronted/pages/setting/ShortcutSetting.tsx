@@ -1,10 +1,10 @@
-import SettingButton from '@/fronted/components/setting/SettingButton';
 import SettingInput from '@/fronted/components/setting/SettingInput';
 import ItemWrapper from '@/fronted/components/setting/ItemWrapper';
 import FooterWrapper from '@/fronted/components/setting/FooterWrapper';
 import Header from '@/fronted/components/setting/Header';
 import useSettingForm from '@/fronted/hooks/useSettingForm';
 import Separator from '@/fronted/components/Separtor';
+import {Button} from "@/fronted/components/ui/button";
 
 const ShortcutSetting = () => {
     const { setting, setSettingFunc, submit, eqServer } = useSettingForm([
@@ -122,7 +122,13 @@ const ShortcutSetting = () => {
             </ItemWrapper>
 
             <FooterWrapper>
-                <SettingButton handleSubmit={submit} disabled={eqServer} />
+                <Button
+                    onClick={submit}
+                    disabled={eqServer}
+                >
+                    Apply
+                </Button>
+
             </FooterWrapper>
         </form>
     );

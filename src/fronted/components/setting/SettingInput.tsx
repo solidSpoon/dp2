@@ -1,5 +1,8 @@
 import { cn } from '../../../common/utils/Util';
 import Title from './Title';
+import {Input} from "@/fronted/components/ui/input";
+import {Label} from "@/fronted/components/ui/label";
+import * as React from "react";
 
 export interface SettingInputProps {
     title: string;
@@ -21,21 +24,21 @@ const SettingInput = ({
     inputWidth,
 }: SettingInputProps) => {
     return (
-        <div className="text-gray-700 text-sm select-none pr-10">
-            <Title title={title} />
-            {/* <div className='text-sm text-left w-full'>{title} :</div> */}
-            <input
-                className={cn(
-                    `appearance-none border h-10 px-3 text-gray-700  outline-2 outline-black w-full rounded-xl font-mono`
-                )}
+        <div className={cn("grid w-full items-center gap-1.5 pl-2")}>
+            <Label>{title}</Label>
+            <Input
+                className={inputWidth}
                 type={type}
-                placeholder={placeHolder}
-                value={value || ''}
-                onChange={(event) => setValue(event.target.value)}
-            />
-            <div className={cn('text-sm text-left w-full text-gray-500 mt-2')}>
+                   value={value}
+                   onChange={(event) => setValue(event.target.value)}
+                   placeholder={placeHolder}/>
+            <p
+
+                className={cn("text-sm text-muted-foreground")}
+
+            >
                 {description}
-            </div>
+            </p>
         </div>
     );
 };
