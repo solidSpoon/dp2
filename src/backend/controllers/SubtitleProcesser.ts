@@ -48,6 +48,9 @@ function tokenizeAndProcess(text: string): TokenRes[] {
             continue;
         }
         const strings = last.word.split("'");
+        if (strings.length === 1) {
+            continue;
+        }
         last.word = strings[0];
         last.pos.length = last.word.length;
         item.word = strings[1] + item.word;
@@ -128,7 +131,6 @@ const processSentence = (sentence: string): SentenceStruct => {
     if (blockParts.length > 0) {
         blocks.push({blockParts});
     }
-    console.log('aafff',blocks);
     return {
         original: sentence,
         blocks: blocks,
@@ -136,6 +138,7 @@ const processSentence = (sentence: string): SentenceStruct => {
 };
 
 const processSentences = (sentences: string[]): SentenceStruct[] => {
+    console.log('ininin', sentences);
     return sentences.map(processSentence);
 };
 export default processSentences;
