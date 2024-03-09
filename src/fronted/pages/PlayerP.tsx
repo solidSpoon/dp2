@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {motion} from 'framer-motion';
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import Split from 'react-split';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
-import useLayout, { cpW } from '@/fronted/hooks/useLayout';
-import { cn } from '@/common/utils/Util';
+import {useLocation, useParams, useSearchParams} from 'react-router-dom';
+import useLayout, {cpW} from '@/fronted/hooks/useLayout';
+import {cn} from '@/common/utils/Util';
 import FileBrowser from '@/fronted/components/FileBrowser';
 import ControlBox from '@/fronted/components/ControlBox';
 import MainSubtitle from '@/fronted/components/MainSubtitle';
@@ -15,6 +15,7 @@ import GlobalShortCut from '@/fronted/components/GlobalShortCut';
 import SideBar from '@/fronted/components/SideBar';
 import useSystem from '@/fronted/hooks/useSystem';
 import {darkColor, FONT_SIZE, lightColor, themeProvider} from "@/fronted/styles/style";
+import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from "@/fronted/components/ui/resizable";
 
 const api = window.electron;
 const PlayerP = () => {
@@ -33,7 +34,7 @@ const PlayerP = () => {
         null,
         useLayout((s) => s.height)
     );
-    const { videoId } = useParams();
+    const {videoId} = useParams();
     const playFile = useFile((s) => s.playFile);
     const location = useLocation();
     const sideBarAnimation =
@@ -55,10 +56,10 @@ const PlayerP = () => {
         runEffect();
     }, [playFile, videoId]);
     useEffect(() => {
-        setSearchParams({ sideBarAnimation: 'true' });
+        setSearchParams({sideBarAnimation: 'true'});
     }, [setSearchParams]);
     const posRef = useRef<HTMLDivElement>(null);
-    const [pos, setPos] = useState({ x: 0, y: 0, scale: 1 });
+    const [pos, setPos] = useState({x: 0, y: 0, scale: 1});
     useLayoutEffect(() => {
         const updatePos = () => {
             if (posRef.current === null) {
@@ -109,17 +110,17 @@ const PlayerP = () => {
                             className={cn(
                                 'col-start-1 col-end-2 row-start-1 row-end-3'
                             )}
-                            initial={{ x: -1000 }}
+                            initial={{x: -1000}}
                             animate={{
                                 x: 0,
                             }}
-                            exit={{ x: -1000 }}
+                            exit={{x: -1000}}
                             transition={{
                                 type: 'tween',
                                 duration: sideBarAnimation ? 0 : 0,
                             }}
                         >
-                            <SideBar compact={!w('xl')} />
+                            <SideBar compact={!w('xl')}/>
                         </motion.div>
                         <motion.div
                             className={cn(
@@ -127,17 +128,17 @@ const PlayerP = () => {
                                 h('md') && 'row-start-2',
                                 w('md') && 'row-start-1 col-start-3 pl-1'
                             )}
-                            initial={{ x: 1000 }}
+                            initial={{x: 1000}}
                             animate={{
                                 x: 0,
                             }}
-                            exit={{ x: 1000 }}
+                            exit={{x: 1000}}
                             transition={{
                                 type: 'tween',
                                 duration: 0.2,
                             }}
                         >
-                            <FileBrowser />
+                            <FileBrowser/>
                         </motion.div>
 
                         <motion.div
@@ -146,18 +147,18 @@ const PlayerP = () => {
                                 w('md') && 'block col-end-3',
                                 h('md') && 'block row-end-2'
                             )}
-                            initial={{ y: -1000 }}
+                            initial={{y: -1000}}
                             animate={{
                                 y: 0,
                                 x: 0,
                             }}
-                            exit={{ y: -1000 }}
+                            exit={{y: -1000}}
                             transition={{
                                 type: 'tween',
                                 duration: 0.2,
                             }}
                         >
-                            <ControlBox />
+                            <ControlBox/>
                         </motion.div>
                     </>
                 )}
@@ -167,7 +168,7 @@ const PlayerP = () => {
                         gridArea: '2 / 2 / 2 / 3',
                     }}
                 >
-                    <div className="w-full h-full" ref={posRef} />
+                    <div className="w-full h-full" ref={posRef}/>
                 </div>
                 <div
                     className={cn(
@@ -185,57 +186,71 @@ const PlayerP = () => {
                 >
                     <div
                         className={cn(
-                            'w-full h-full flex flex-col border-0 border-white/90 drop-shadow-lg overflow-hidden',
-                            hasSubTitle && 'border-r-0',
-                            !isWindows && 'border-0',
-                            showSideBar &&
-                                'overflow-hidden border-[30px] border-white/90 rounded-[45px]'
-                        )}
+                        'w-full h-full flex flex-col border-0 border-white/90 drop-shadow-lg overflow-hidden',
+                        hasSubTitle && 'border-r-0',
+                        !isWindows && 'border-0',
+                        showSideBar &&
+                        'overflow-hidden border-[30px] border-white/90 rounded-[45px]'
+                    )}
                     >
-                        <Split
+                        {/*<Split*/}
+                        {/*    className={cn(*/}
+                        {/*        'flex flex-row h-0 flex-1 w-full overflow-hidden bg-gray-300',*/}
+                        {/*        lightColor["bg-background"],*/}
+                        {/*        `dark:${darkColor["bg-background"]}`*/}
+                        {/*    )}*/}
+                        {/*    sizes={JSON.parse(sizeA)}*/}
+                        {/*    onDragEnd={(sizes) => {*/}
+                        {/*        localStorage.setItem(*/}
+                        {/*            'split-size-a',*/}
+                        {/*            JSON.stringify(sizes)*/}
+                        {/*        );*/}
+                        {/*    }}*/}
+                        {/*>*/}
+                        <ResizablePanelGroup
                             className={cn(
-                                'flex flex-row h-0 flex-1 w-full overflow-hidden bg-gray-300',
                                 lightColor["bg-background"],
                                 `dark:${darkColor["bg-background"]}`
                             )}
-                            sizes={JSON.parse(sizeA)}
-                            onDragEnd={(sizes) => {
-                                localStorage.setItem(
-                                    'split-size-a',
-                                    JSON.stringify(sizes)
-                                );
-                            }}
-                        >
-                            <Split
-                                minSize={10}
-                                className="split z-40"
-                                sizes={JSON.parse(sizeB)}
-                                onDragEnd={(sizes) => {
-                                    localStorage.setItem(
-                                        'split-size-b',
-                                        JSON.stringify(sizes)
-                                    );
-                                }}
-                                direction="vertical"
-                            >
-                                <div className="h-full">
-                                    <Player />
-                                </div>
-                                <div className="h-full">
-                                    <MainSubtitle />
-                                </div>
-                            </Split>
-                            <div className={cn('h-full w-full')}>
-                                <Subtitle />
-                            </div>
-                        </Split>
-                    </div>
+                            direction={"horizontal"}>
+                            {/*<Split*/}
+                            {/*    minSize={10}*/}
+                            {/*    className="split z-40"*/}
+                            {/*    sizes={JSON.parse(sizeB)}*/}
+                            {/*    onDragEnd={(sizes) => {*/}
+                            {/*        localStorage.setItem(*/}
+                            {/*            'split-size-b',*/}
+                            {/*            JSON.stringify(sizes)*/}
+                            {/*        );*/}
+                            {/*    }}*/}
+                            {/*    direction="vertical"*/}
+                            {/*>*/}
+                            <ResizablePanel>
+                                <ResizablePanelGroup direction={"vertical"}>
+                                    <ResizablePanel><Player/></ResizablePanel>
+                                    <ResizableHandle withHandle className={cn('drop-shadow data-[panel-group-direction=vertical]:h-2 dark:bg-zinc-700')}/>
+                                    <ResizablePanel><MainSubtitle/></ResizablePanel>
+                                    {/*<div className="h-full">*/}
+                                    {/*    <Player/>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="h-full">*/}
+                                    {/*    <MainSubtitle/>*/}
+                                    {/*</div>*/}
+                                </ResizablePanelGroup>
+                            </ResizablePanel>
+                            <ResizableHandle withHandle className={cn("gutter-style w-2 dark:bg-zinc-700")}/>
+                            <ResizablePanel>
+                                <Subtitle/>
+                            </ResizablePanel>
+                        </ResizablePanelGroup>
                 </div>
-                <UploadButton />
-                <GlobalShortCut />
             </div>
+            <UploadButton/>
+            <GlobalShortCut/>
         </div>
-    );
+</div>
+)
+    ;
 };
 
 export default PlayerP;

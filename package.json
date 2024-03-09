@@ -73,6 +73,7 @@
     "react-icons": "^4.12.0",
     "react-keyevent": "^1.1.0",
     "react-player": "^2.14.1",
+    "react-resizable-panels": "^2.0.12",
     "react-router-dom": "^6.21.0",
     "react-split": "^2.0.14",
     "react-virtuoso": "^4.6.2",
