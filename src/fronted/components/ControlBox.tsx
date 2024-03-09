@@ -59,61 +59,65 @@ const ControlBox = () => {
             <CardDescription>Control the subtitle and video</CardDescription>
         </CardHeader>
             <CardContent
-                className={cn("flex gap-x-16 gap-y-2 overflow-auto flex-wrap w-full h-0 flex-1",
+                className={cn("grid place-content-start overflow-y-auto  w-full h-0 flex-1",
                     "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded"
-                    )}
+                )}
+                style={{
+                    "gridTemplateColumns": "repeat(auto-fit, minmax(150px, 1fr))", /* 修改最小宽度和列数以适应你的需求 */
+                    // "gap": "1rem", /* 可选的间距 */
+                }}
             >
                 {/*<div*/}
-                {/*    className={cn(*/}
-                {/*        'flex gap-16 flex-wrap items-center justify-start  flex-1 w-full h-0 overflow-auto',*/}
-                {/*        'scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded'*/}
-                {/*    )}*/}
-                {/*>*/}
-                <div className="flex items-center space-x-2">
-                    <Switch
-                        checked={showEn}
-                        onCheckedChange={() => changeShowEn()}
-                        id="showEn"
-                    />
-                    <Label htmlFor="showEn">展示英文字幕</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <Switch
-                        checked={showCn}
-                        onCheckedChange={() => changeShowCn()}
-                        id="showCn"
-                    />
-                    <Label htmlFor="showCn">展示中文字幕</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <Switch
-                        checked={showWordLevel}
-                        onCheckedChange={() => changeShowWordLevel()}
-                        id="showWordLevel"
-                    />
-                    <Label htmlFor="showWordLevel">展示生词翻译</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <Switch
-                        checked={singleRepeat}
-                        onCheckedChange={() => changeSingleRepeat()}
-                        id="singleRepeat"
-                    />
-                    <Label htmlFor="singleRepeat">单句循环</Label>
-                </div>
-                <Button
-                    onClick={() => {
-                        sentenceClearAllAdjust();
-                        toast('清除了', {
-                            icon: '👏',
-                        });
-                    }}
-                    title="清除调整的时间"
-                    className={cn('w-60 rounded')}
-                >
-                    <AiOutlineFieldTime/>
-                </Button>
-                {/*</div>*/}
+                    {/*    className={cn(*/}
+                    {/*        'flex gap-16 flex-wrap items-center justify-start  flex-1 w-full h-0 overflow-auto',*/}
+                    {/*        'scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded'*/}
+                    {/*    )}*/}
+                    {/*>*/}
+                    <div className="flex items-center space-x-2">
+                        <Switch
+                            checked={showEn}
+                            onCheckedChange={() => changeShowEn()}
+                            id="showEn"
+                        />
+                        <Label htmlFor="showEn">展示英文字幕</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Switch
+                            checked={showCn}
+                            onCheckedChange={() => changeShowCn()}
+                            id="showCn"
+                        />
+                        <Label htmlFor="showCn">展示中文字幕</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Switch
+                            checked={showWordLevel}
+                            onCheckedChange={() => changeShowWordLevel()}
+                            id="showWordLevel"
+                        />
+                        <Label htmlFor="showWordLevel">展示生词翻译</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <Switch
+                            checked={singleRepeat}
+                            onCheckedChange={() => changeSingleRepeat()}
+                            id="singleRepeat"
+                        />
+                        <Label htmlFor="singleRepeat">单句循环</Label>
+                    </div>
+                    <Button
+                        onClick={() => {
+                            sentenceClearAllAdjust();
+                            toast('清除了', {
+                                icon: '👏',
+                            });
+                        }}
+                        title="清除时间调整"
+                        className={cn()}
+                    >
+                        <AiOutlineFieldTime/>
+                    </Button>
+                    {/*</div>*/}
             </CardContent>
         </Card>
     );
