@@ -219,6 +219,7 @@ const PlayerP = () => {
                             >
                                 <ResizablePanelGroup direction={"vertical"}>
                                     <ResizablePanel
+                                        minSize={10}
                                         defaultSize={size.ia}
                                         onResize={(e) => {
                                             setSize(s => ({...s, ia: e}));

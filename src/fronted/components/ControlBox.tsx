@@ -59,7 +59,7 @@ const ControlBox = () => {
             <CardDescription>Control the subtitle and video</CardDescription>
         </CardHeader>
             <CardContent
-                className={cn("grid place-content-start overflow-y-auto  w-full h-0 flex-1",
+                className={cn("grid place-content-start overflow-y-auto  w-full h-0 flex-1 pt-1",
                     "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded"
                 )}
                 style={{

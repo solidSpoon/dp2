@@ -6,6 +6,7 @@ import usePlayerController from '../hooks/usePlayerController';
 import { cn, secondToDate } from '@/common/utils/Util';
 import SpeedSlider from './speed-slider';
 import {Slider} from "@/fronted/components/ui/slider";
+import {Card} from "@/fronted/components/ui/card";
 
 export interface PlayerControlPannelProps {
     className?: string;
@@ -21,7 +22,7 @@ const PlayerControlPannel = ({
     onPlay,
     playing,
 }: PlayerControlPannelProps) => {
-    const { playTime, duration, volume, setVolume, playbackRate, setPlaybackRate } = usePlayerController(
+    const { playTime, duration, volume, setVolume, playbackRate, setPlaybackRate, muted, setMuted } = usePlayerController(
         useShallow((s) => ({
             playTime: s.playTime,
             duration: s.duration,
@@ -29,6 +30,8 @@ const PlayerControlPannel = ({
             setVolume: s.setVolume,
             playbackRate: s.playbackRate,
             setPlaybackRate: s.setPlaybackRate,
+            setMuted: s.setMuted,
+            muted: s.muted,
         }))
     );
     const [mouseOverOut, setMouseOverOut] = useState<boolean>(false);
@@ -92,12 +95,12 @@ const PlayerControlPannel = ({
             onMouseMove={handleMouseMove}
             onMouseLeave={onMouseLeave}
             className={cn(
-                'w-full flex flex-col-reverse pt-10 h-full text-white/80 p-2 px-4',
+                'w-full flex flex-col-reverse pt-10 h-full text-white/80 p-3 px-4',
                 className
             )}
         >
-            <div
-                className={cn('p-5 pb-4 rounded-3xl', mouseOverOut && 'bg-white')}
+            <Card
+                className={cn('p-5 pb-3',!mouseOverOut && 'bg-transparent h-20 border-0 shadow-none')}
                 onMouseMove={(e) => {
                     e.stopPropagation();
                     handleMouseMoveIn();
@@ -106,7 +109,7 @@ const PlayerControlPannel = ({
             >
                 <div
                     className={cn(
-                        'flex flex-col items-center justify-between w-full gap-2',
+                        'flex flex-col items-center justify-between w-full gap-4',
                         // !mouseOverOut && 'invisible'
                     )}
                 >
@@ -128,7 +131,7 @@ const PlayerControlPannel = ({
                             setSelecting(false);
                         }}
                     />
-                    <div className="w-full flex justify-between items-end">
+                    <div className="w-full flex justify-between items-center">
                         <div className="flex gap-4">
                             <div
                                 onClick={() => {
@@ -141,9 +144,9 @@ const PlayerControlPannel = ({
                                 className="flex justify-center items-center rounded-lg"
                             >
                                 {playing ? (
-                                    <FaPause className="w-6 h-6 fill-black" />
+                                    <FaPause className="w-6 h-6 fill-foreground" />
                                 ) : (
-                                    <FaPlay className="w-6 h-6  fill-black" />
+                                    <FaPlay className="w-6 h-6  fill-foreground" />
                                 )}
                             </div>
                             <div className=" h-full flex items-center">
@@ -159,6 +162,8 @@ const PlayerControlPannel = ({
                                 onSpeedChange={setPlaybackRate}
                             />
                             <VolumeSlider
+                                muted={muted}
+                                onMutedChange={setMuted}
                                 volume={volume}
                                 onVolumeChange={setVolume}
                             />
@@ -166,7 +171,7 @@ const PlayerControlPannel = ({
                     </div>
                     </>)}
                 </div>
-            </div>
+            </Card>
         </div>
     );
 };
