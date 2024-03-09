@@ -80,14 +80,14 @@ const SettingLayout = () => {
     return (
         <div
             className={cn(
-                'w-full h-screen flex flex-col overflow-hidden select-none bg-white p-6 pt-12 gap-4'
+                'w-full h-screen flex flex-col overflow-hidden select-none bg-background p-6 pt-12 gap-4 text-foreground'
             )}
         >
             <div className={cn('p-4')}>
                 <h1 className={cn('text-4xl font-bold font-serif')}>
                     Settings
                 </h1>
-                <h2 className={cn('text-xl text-neutral-500 mt-2 mb-4')}>
+                <h2 className={cn('text-xl text-secondary-foreground mt-2 mb-4')}>
                     Dash Player
                 </h2>
                 <Separator orientation="horizontal" className="px-0"/>

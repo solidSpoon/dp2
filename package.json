@@ -49,6 +49,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.3",
     "@turf/turf": "^6.5.0",
+    "@uidotdev/usehooks": "^2.4.1",
     "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.6.2",
     "better-sqlite3": "^9.4.0",

@@ -16,8 +16,14 @@ import SideBar from '@/fronted/components/SideBar';
 import useSystem from '@/fronted/hooks/useSystem';
 import {darkColor, FONT_SIZE, lightColor, themeProvider} from "@/fronted/styles/style";
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from "@/fronted/components/ui/resizable";
-
+import { useLocalStorage } from "@uidotdev/usehooks";
 const api = window.electron;
+interface Size {
+    oa: number;
+    ob: number;
+    ia: number;
+    ib: number;
+}
 const PlayerP = () => {
     const showSideBar = useLayout((state) => state.showSideBar);
     const titleBarHeight = useLayout((state) => state.titleBarHeight);
@@ -26,6 +32,12 @@ const PlayerP = () => {
     const isWindows = useSystem((s) => s.isWindows);
     const sizeB =
         localStorage.getItem('split-size-b') ?? JSON.stringify([80, 20]);
+    const [size, setSize] = useLocalStorage<Size>('split-size', {
+        oa: 75,
+        ob: 25,
+        ia: 80,
+        ib: 20,
+    });
     const w = cpW.bind(
         null,
         useLayout((s) => s.width)
@@ -193,53 +205,41 @@ const PlayerP = () => {
                         'overflow-hidden border-[30px] border-white/90 rounded-[45px]'
                     )}
                     >
-                        {/*<Split*/}
-                        {/*    className={cn(*/}
-                        {/*        'flex flex-row h-0 flex-1 w-full overflow-hidden bg-gray-300',*/}
-                        {/*        lightColor["bg-background"],*/}
-                        {/*        `dark:${darkColor["bg-background"]}`*/}
-                        {/*    )}*/}
-                        {/*    sizes={JSON.parse(sizeA)}*/}
-                        {/*    onDragEnd={(sizes) => {*/}
-                        {/*        localStorage.setItem(*/}
-                        {/*            'split-size-a',*/}
-                        {/*            JSON.stringify(sizes)*/}
-                        {/*        );*/}
-                        {/*    }}*/}
-                        {/*>*/}
                         <ResizablePanelGroup
                             className={cn(
                                 lightColor["bg-background"],
                                 `dark:${darkColor["bg-background"]}`
                             )}
                             direction={"horizontal"}>
-                            {/*<Split*/}
-                            {/*    minSize={10}*/}
-                            {/*    className="split z-40"*/}
-                            {/*    sizes={JSON.parse(sizeB)}*/}
-                            {/*    onDragEnd={(sizes) => {*/}
-                            {/*        localStorage.setItem(*/}
-                            {/*            'split-size-b',*/}
-                            {/*            JSON.stringify(sizes)*/}
-                            {/*        );*/}
-                            {/*    }}*/}
-                            {/*    direction="vertical"*/}
-                            {/*>*/}
-                            <ResizablePanel>
+                            <ResizablePanel
+                                defaultSize={size.oa}
+                                onResize={(e) => {
+                                    setSize(s => ({...s, oa: e}));
+                                }}
+                            >
                                 <ResizablePanelGroup direction={"vertical"}>
-                                    <ResizablePanel><Player/></ResizablePanel>
+                                    <ResizablePanel
+                                        defaultSize={size.ia}
+                                        onResize={(e) => {
+                                            setSize(s => ({...s, ia: e}));
+                                        }}
+                                    ><Player/></ResizablePanel>
                                     <ResizableHandle withHandle className={cn('drop-shadow data-[panel-group-direction=vertical]:h-2 dark:bg-zinc-700')}/>
-                                    <ResizablePanel><MainSubtitle/></ResizablePanel>
-                                    {/*<div className="h-full">*/}
-                                    {/*    <Player/>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="h-full">*/}
-                                    {/*    <MainSubtitle/>*/}
-                                    {/*</div>*/}
+                                    <ResizablePanel
+                                        defaultSize={size.ib}
+                                        onResize={(e) => {
+                                            setSize(s => ({...s, ib: e}));
+                                        }}
+                                    ><MainSubtitle/></ResizablePanel>
                                 </ResizablePanelGroup>
                             </ResizablePanel>
                             <ResizableHandle withHandle className={cn("gutter-style w-2 dark:bg-zinc-700")}/>
-                            <ResizablePanel>
+                            <ResizablePanel
+                                defaultSize={size.ob}
+                                onResize={(e) => {
+                                    setSize(s => ({...s, ob: e}));
+                                }}
+                            >
                                 <Subtitle/>
                             </ResizablePanel>
                         </ResizablePanelGroup>
