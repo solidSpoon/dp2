@@ -30,17 +30,10 @@ interface Size {
 const PlayerP = () => {
     const showSideBar = useLayout((state) => state.showSideBar);
     const titleBarHeight = useLayout((state) => state.titleBarHeight);
-    const sizeA =
-        localStorage.getItem('split-size-a') ?? JSON.stringify([75, 25]);
-    const isWindows = useSystem((s) => s.isWindows);
-    const sizeB =
-        localStorage.getItem('split-size-b') ?? JSON.stringify([80, 20]);
-    const [size, setSize] = useLocalStorage<Size>('split-size', {
-        oa: 75,
-        ob: 25,
-        ia: 80,
-        ib: 20,
-    });
+    const [sizeOa, setSizeOa] = useLocalStorage<number>('split-size-oa', 75);
+    const [sizeOb, setSizeOb] = useLocalStorage<number>('split-size-ob', 25);
+    const [sizeIa, setSizeIa] = useLocalStorage<number>('split-size-ia', 80);
+    const [sizeIb, setSizeIb] = useLocalStorage<number>('split-size-ib', 20);
     const w = cpW.bind(
         null,
         useLayout((s) => s.width)
@@ -99,6 +92,9 @@ const PlayerP = () => {
     }, [titleBarHeight]);
 
     const showPlayer = w('md') && h('md');
+    // useEffect(() => {
+    //     console.log('eeeeeeesize', size);
+    // }, [size]);
     const gridTemplate = () => {
         if (showPlayer && w('xl')) {
             return '15% 60% 25%';
@@ -204,7 +200,7 @@ const PlayerP = () => {
                         className={cn(
                             'w-full h-full flex flex-col border-0 border-white/90 drop-shadow-lg overflow-hidden',
                             hasSubTitle && 'border-r-0',
-                            !isWindows && 'border-0',
+                            // !isWindows && 'border-0',
                             showSideBar &&
                             'overflow-hidden border-[30px] border-white/90 rounded-[45px]'
                         )}
@@ -216,17 +212,24 @@ const PlayerP = () => {
                             )}
                             direction={"horizontal"}>
                             <ResizablePanel
-                                defaultSize={size.oa}
+                                defaultSize={sizeOa}
                                 onResize={(e) => {
-                                    setSize(s => ({...s, oa: e}));
+                                    if (fullScreen) {
+                                        return;
+                                    }
+                                    console.log('eeeeeeb', e);
+                                    setSizeOa(e);
                                 }}
                             >
                                 <ResizablePanelGroup direction={"vertical"}>
                                     <ResizablePanel
                                         minSize={10}
-                                        defaultSize={size.ia}
+                                        defaultSize={sizeIa}
                                         onResize={(e) => {
-                                            setSize(s => ({...s, ia: e}));
+                                            if (fullScreen) {
+                                                return;
+                                            }
+                                            setSizeIa(e);
                                         }}
                                     ><Player/></ResizablePanel>
                                     {!fullScreen && (
@@ -235,9 +238,12 @@ const PlayerP = () => {
                                                              className={cn('drop-shadow data-[panel-group-direction=vertical]:h-2 dark:bg-zinc-700')}/>
                                             <ResizablePanel
                                                 className={cn('ofvisible')}
-                                                defaultSize={size.ib}
+                                                defaultSize={sizeIb}
                                                 onResize={(e) => {
-                                                    setSize(s => ({...s, ib: e}));
+                                                    if (fullScreen) {
+                                                        return;
+                                                    }
+                                                    setSizeIb(e);
                                                 }}
                                             ><MainSubtitle/></ResizablePanel>
                                         </>
@@ -248,9 +254,13 @@ const PlayerP = () => {
                                 <>
                                     <ResizableHandle withHandle className={cn("gutter-style w-2 dark:bg-zinc-700")}/>
                                     <ResizablePanel
-                                        defaultSize={size.ob}
+                                        defaultSize={sizeOb}
                                         onResize={(e) => {
-                                            setSize(s => ({...s, ob: e}));
+                                            if (fullScreen) {
+                                                return;
+                                            }
+                                            console.log('eeeeeea', e);
+                                            setSizeOb(e);
                                         }}
                                     >
                                         <Subtitle/>

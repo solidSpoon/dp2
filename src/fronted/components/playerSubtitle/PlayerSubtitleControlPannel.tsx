@@ -8,7 +8,6 @@ import SpeedSlider from '../speed-slider';
 import {Slider} from "@/fronted/components/ui/slider";
 import {Card} from "@/fronted/components/ui/card";
 import {Toggle} from "@/fronted/components/ui/toggle";
-import {IoVolumeHigh, IoVolumeLow, IoVolumeMute} from "react-icons/io5";
 import useLayout from "@/fronted/hooks/useLayout";
 
 export interface PlayerControlPannelProps {
@@ -42,7 +41,6 @@ const PlayerControlPannel = ({
     const [currentValue, setCurrentValue] = useState(0);
     const currentValueUpdateTime = useRef<number>(0);
     const [selecting, setSelecting] = useState(false);
-    const mouseOverTimeout = useRef<number[]>([0]);
 
     // const currentValueUpdateTime
     useEffect(() => {
@@ -65,7 +63,7 @@ const PlayerControlPannel = ({
                     setMouseOver(true);
                 }}
                 onMouseLeave={() => {
-                    // setMouseOver(false);
+                    setMouseOver(false);
                 }}
             >
                 <div
