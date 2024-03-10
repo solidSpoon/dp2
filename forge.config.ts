@@ -8,7 +8,7 @@ import {VitePlugin} from '@electron-forge/plugin-vite';
 const config: ForgeConfig = {
     packagerConfig: {
         asar: true,
-        // icon: path.join(process.cwd(), 'main', 'build', 'icon'),
+        icon: './assets/icons/icon',
         extraResource: ["./drizzle"]
     },
     rebuildConfig: {},
