@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import * as turf from '@turf/turf';
-import { Feature, Polygon } from '@turf/turf';
-import { twMerge } from 'tailwind-merge';
-import { useShallow } from 'zustand/react/shallow';
-import { YdRes } from '@/common/types/YdRes';
+import {Feature, Polygon} from '@turf/turf';
+import {twMerge} from 'tailwind-merge';
+import {useShallow} from 'zustand/react/shallow';
+import {YdRes} from '@/common/types/YdRes';
 import WordPop from './WordPop';
-import { playUrl, playWord } from '@/common/utils/AudioPlayer';
+import {playUrl, playWord} from '@/common/utils/AudioPlayer';
 import usePlayerController from '../hooks/usePlayerController';
 import useSetting from '../hooks/useSetting';
 
@@ -16,7 +16,10 @@ export interface WordParam {
     pop: boolean;
     requestPop: () => void;
     show: boolean;
+    hoverColor?: string;
+    alwaysDark?: boolean;
 }
+
 /**
  * 以左上角为原点，顺时针旋转
  */
@@ -35,12 +38,12 @@ export const getBox = (ele: HTMLDivElement): Feature<Polygon> => {
         ],
     ]);
 };
-const Word = ({ word, pop, requestPop, show }: WordParam) => {
+const Word = ({word, pop, requestPop, show, alwaysDark}: WordParam) => {
     const [translationText, setTranslationText] = useState<YdRes | undefined>(
         undefined
     );
     const pause = usePlayerController((s) => s.pause);
-    const { getWordLevel, markWordLevel, showWordLevel } = usePlayerController(
+    const {getWordLevel, markWordLevel, showWordLevel} = usePlayerController(
         useShallow((s) => ({
             getWordLevel: s.getWordLevel,
             markWordLevel: s.markWordLevel,
@@ -149,12 +152,14 @@ const Word = ({ word, pop, requestPop, show }: WordParam) => {
                         word={word}
                         translation={translationText}
                         ref={popperRef}
+                        hoverColor={alwaysDark ? "bg-neutral-600" : "bg-stone-100 dark:bg-neutral-600"}
                     />
                 ) : (
                     <div
                         className={twMerge(
-                            'hover:bg-stone-100 dark:hover:bg-neutral-600 rounded select-none',
-                            !show && 'text-transparent bg-wordHoverBackground'
+                            ' rounded select-none',
+                            !show && 'text-transparent bg-wordHoverBackground',
+                            alwaysDark ? 'hover:bg-neutral-600' : 'hover:bg-stone-100 dark:hover:bg-neutral-600'
                         )}
                         onMouseLeave={() => {
                             setHovered(false);
@@ -180,3 +185,8 @@ const Word = ({ word, pop, requestPop, show }: WordParam) => {
 };
 
 export default Word;
+
+Word.defaultProps = {
+    hoverColor: 'bg-stone-100',
+    alwaysDark: false,
+}

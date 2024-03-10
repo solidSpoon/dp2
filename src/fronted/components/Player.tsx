@@ -6,6 +6,9 @@ import usePlayerController from '../hooks/usePlayerController';
 import useFile from '../hooks/useFile';
 import PlayerControlPannel from './PlayerControlPannel';
 import { SeekAction } from '../hooks/usePlayerControllerSlices/SliceTypes';
+import PlayerSubtitle from "@/fronted/components/playerSubtitle/PlayerSubtitle";
+import PlayerSubtitlePannel from "@/fronted/components/playerSubtitle/PlayerSubtitlePannel";
+import useLayout from "@/fronted/hooks/useLayout";
 
 const api = window.electron;
 
@@ -45,6 +48,8 @@ export default function Player(): ReactElement {
     const playerRefBackground: React.RefObject<HTMLCanvasElement> =
         useRef<HTMLCanvasElement>(null);
     let lastFile: FileT | undefined;
+
+    const fullScreen = useLayout((s) => s.fullScreen);
 
     const lastSeekTime = useRef<SeekAction>({ time: 0 });
 
@@ -213,7 +218,7 @@ export default function Player(): ReactElement {
                             }
                         }}
                     />
-                    {!showControlPanel && (
+                    {!fullScreen && (!showControlPanel && (
                         <PlayerControlPannel
                             onTimeChange={(time) => {
                                 seekTo({ time });
@@ -227,7 +232,8 @@ export default function Player(): ReactElement {
                             }}
                             playing={playing}
                         />
-                    )}
+                    ))}
+                    {fullScreen && <PlayerSubtitlePannel/>}
                 </div>
             </div>
         );

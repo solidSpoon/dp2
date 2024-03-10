@@ -16,14 +16,17 @@ import SideBar from '@/fronted/components/SideBar';
 import useSystem from '@/fronted/hooks/useSystem';
 import {darkColor, FONT_SIZE, lightColor, themeProvider} from "@/fronted/styles/style";
 import {ResizableHandle, ResizablePanel, ResizablePanelGroup} from "@/fronted/components/ui/resizable";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import {useLocalStorage} from "@uidotdev/usehooks";
+
 const api = window.electron;
+
 interface Size {
     oa: number;
     ob: number;
     ia: number;
     ib: number;
 }
+
 const PlayerP = () => {
     const showSideBar = useLayout((state) => state.showSideBar);
     const titleBarHeight = useLayout((state) => state.titleBarHeight);
@@ -46,6 +49,7 @@ const PlayerP = () => {
         null,
         useLayout((s) => s.height)
     );
+    const fullScreen = useLayout((s) => s.fullScreen);
     const {videoId} = useParams();
     const playFile = useFile((s) => s.playFile);
     const location = useLocation();
@@ -198,12 +202,12 @@ const PlayerP = () => {
                 >
                     <div
                         className={cn(
-                        'w-full h-full flex flex-col border-0 border-white/90 drop-shadow-lg overflow-hidden',
-                        hasSubTitle && 'border-r-0',
-                        !isWindows && 'border-0',
-                        showSideBar &&
-                        'overflow-hidden border-[30px] border-white/90 rounded-[45px]'
-                    )}
+                            'w-full h-full flex flex-col border-0 border-white/90 drop-shadow-lg overflow-hidden',
+                            hasSubTitle && 'border-r-0',
+                            !isWindows && 'border-0',
+                            showSideBar &&
+                            'overflow-hidden border-[30px] border-white/90 rounded-[45px]'
+                        )}
                     >
                         <ResizablePanelGroup
                             className={cn(
@@ -225,34 +229,42 @@ const PlayerP = () => {
                                             setSize(s => ({...s, ia: e}));
                                         }}
                                     ><Player/></ResizablePanel>
-                                    <ResizableHandle withHandle className={cn('drop-shadow data-[panel-group-direction=vertical]:h-2 dark:bg-zinc-700')}/>
-                                    <ResizablePanel
-                                        className={cn('ofvisible')}
-                                        defaultSize={size.ib}
-                                        onResize={(e) => {
-                                            setSize(s => ({...s, ib: e}));
-                                        }}
-                                    ><MainSubtitle/></ResizablePanel>
+                                    {!fullScreen && (
+                                        <>
+                                            <ResizableHandle withHandle
+                                                             className={cn('drop-shadow data-[panel-group-direction=vertical]:h-2 dark:bg-zinc-700')}/>
+                                            <ResizablePanel
+                                                className={cn('ofvisible')}
+                                                defaultSize={size.ib}
+                                                onResize={(e) => {
+                                                    setSize(s => ({...s, ib: e}));
+                                                }}
+                                            ><MainSubtitle/></ResizablePanel>
+                                        </>
+                                    )}
                                 </ResizablePanelGroup>
                             </ResizablePanel>
-                            <ResizableHandle withHandle className={cn("gutter-style w-2 dark:bg-zinc-700")}/>
-                            <ResizablePanel
-                                defaultSize={size.ob}
-                                onResize={(e) => {
-                                    setSize(s => ({...s, ob: e}));
-                                }}
-                            >
-                                <Subtitle/>
-                            </ResizablePanel>
+                            {!fullScreen && (
+                                <>
+                                    <ResizableHandle withHandle className={cn("gutter-style w-2 dark:bg-zinc-700")}/>
+                                    <ResizablePanel
+                                        defaultSize={size.ob}
+                                        onResize={(e) => {
+                                            setSize(s => ({...s, ob: e}));
+                                        }}
+                                    >
+                                        <Subtitle/>
+                                    </ResizablePanel>
+                                </>)}
                         </ResizablePanelGroup>
+                    </div>
                 </div>
+                <UploadButton/>
+                <GlobalShortCut/>
             </div>
-            <UploadButton/>
-            <GlobalShortCut/>
         </div>
-</div>
-)
-    ;
+    )
+        ;
 };
 
 export default PlayerP;

@@ -13,11 +13,12 @@ import { cn } from '@/common/utils/Util';
 export interface WordSubParam {
     word: string;
     translation: YdRes | undefined;
+    hoverColor: string;
 }
 
 const WordPop = React.forwardRef(
     (
-        { word, translation }: WordSubParam,
+        { word, translation, hoverColor }: WordSubParam,
         ref: React.ForwardedRef<HTMLDivElement | null>
     ) => {
         console.log('popper', translation);
@@ -116,7 +117,7 @@ const WordPop = React.forwardRef(
             <>
                 <div
                     ref={refs.setReference}
-                    className="rounded select-none bg-stone-100 dark:bg-neutral-600 z-50 focus:outline-none"
+                    className={cn("rounded select-none z-50 focus:outline-none", hoverColor)}
                     role="button"
                     tabIndex={0}
                     {...getReferenceProps()}

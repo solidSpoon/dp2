@@ -21,6 +21,8 @@ const ControlBox = () => {
         null,
         useLayout((s) => s.height)
     );
+    const fullScreen = useLayout((s) => s.fullScreen);
+    const changeFullScreen = useLayout((s) => s.changeFullScreen);
     const {
         showEn,
         showCn,
@@ -118,6 +120,16 @@ const ControlBox = () => {
                         id="nightMode"
                     />
                     <Label htmlFor="nightMode">夜间模式</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <Switch
+                        checked={fullScreen}
+                        onCheckedChange={() => {
+                            changeFullScreen(!fullScreen);
+                        }}
+                        id="fullScreen"
+                    />
+                    <Label htmlFor="fullScreen">全屏模式</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                     <Switch

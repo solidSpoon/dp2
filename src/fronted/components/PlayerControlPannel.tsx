@@ -7,6 +7,8 @@ import { cn, secondToDate } from '@/common/utils/Util';
 import SpeedSlider from './speed-slider';
 import {Slider} from "@/fronted/components/ui/slider";
 import {Card} from "@/fronted/components/ui/card";
+import useLayout from "@/fronted/hooks/useLayout";
+import {Toggle} from "@/fronted/components/ui/toggle";
 
 export interface PlayerControlPannelProps {
     className?: string;
@@ -34,12 +36,13 @@ const PlayerControlPannel = ({
             muted: s.muted,
         }))
     );
+    const fullScreen = useLayout(s => s.fullScreen);
+    const changeFullScreen = useLayout(s => s.changeFullScreen);
     const [mouseOverOut, setMouseOverOut] = useState<boolean>(false);
     const [currentValue, setCurrentValue] = useState(0);
     const currentValueUpdateTime = useRef<number>(0);
     const [selecting, setSelecting] = useState(false);
     const mouseOverTimeout = useRef<number[]>([0]);
-
     // const currentValueUpdateTime
     useEffect(() => {
         if (selecting || Date.now() - currentValueUpdateTime.current < 500) {
@@ -159,6 +162,16 @@ const PlayerControlPannel = ({
                         </div>
                         <div className="h-full flex-1" />
                         <div className="flex justify-center items-end gap-4">
+                            <Toggle
+                                size={'sm'}
+                                pressed={fullScreen}
+                                onPressedChange={(v) => {
+                                    changeFullScreen(!fullScreen);
+                                }}
+                                className="flex items-center justify-center"
+                            >
+                                Full Screen
+                            </Toggle>
                             <SpeedSlider
                                 speed={playbackRate}
                                 onSpeedChange={setPlaybackRate}

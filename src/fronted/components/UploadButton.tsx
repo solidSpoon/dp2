@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdVideoSettings } from 'react-icons/md';
 import { IoIosSwitch } from 'react-icons/io';
-import { motion } from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import { TbArrowsMaximize } from 'react-icons/tb';
 import { CgMaximizeAlt } from 'react-icons/cg';
 import { FaMaximize } from 'react-icons/fa6';
@@ -14,10 +14,11 @@ export default function UploadButton() {
     const changeSideBar = useLayout((s) => s.changeSideBar);
     const showSideBar = useLayout((s) => s.showSideBar);
     const pauseMeasurement = useSubtitleScroll(state => state.pauseMeasurement);
+    const fullScreen = useLayout(s => s.fullScreen);
     return (
-        <>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid,jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-            <motion.div
+        <AnimatePresence>
+            {!fullScreen && (
+              <motion.div
                 className={cn(
                     'flex items-center justify-center hover:bg-uploadButton/90 w-12 h-12 drop-shadow-md fixed bottom-12 right-12 z-[99] p-3.5 backdrop-blur-3xl overflow-hidden',
                     'bg-lime-600 hover:bg-lime-700',
@@ -32,11 +33,15 @@ export default function UploadButton() {
                     delay: 0.2,
                     duration: 0.2,
                 }}
-                // style={{
-                //     borderRadius: showSideBar ? '10%' : '50%',
-                // }}
+                initial={{
+                    scale: 0,
+                }}
                 animate={{
                     borderRadius: showSideBar ? '10%' : '50%',
+                    scale: 1,
+                }}
+                exit={{
+                    scale: 0,
                 }}
             >
                 {showSideBar ? (
@@ -45,6 +50,7 @@ export default function UploadButton() {
                     <IoIosSwitch className={cn('w-full h-full fill-white ')} />
                 )}
             </motion.div>
-        </>
+            )}
+        </AnimatePresence>
     );
 }

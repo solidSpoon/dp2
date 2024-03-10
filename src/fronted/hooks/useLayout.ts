@@ -9,10 +9,12 @@ export type UseLayoutState = {
     titleBarHeight: number;
     width: ScreenSize;
     height: ScreenSize;
+    fullScreen: boolean;
 };
 
 export type UseLayoutActions = {
     changeSideBar: (show: boolean) => void;
+    changeFullScreen: (full: boolean) => void;
 };
 
 const useLayout = create<UseLayoutState & UseLayoutActions>()(
@@ -21,8 +23,12 @@ const useLayout = create<UseLayoutState & UseLayoutActions>()(
         titleBarHeight: 0,
         width: '2xl',
         height: '2xl',
+        fullScreen: false,
         changeSideBar: (show: boolean) => {
             set({ showSideBar: show });
+        },
+        changeFullScreen: (full: boolean) => {
+            set({ fullScreen: full });
         },
     }))
 );
