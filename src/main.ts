@@ -18,7 +18,8 @@ const createWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
-    frame: false
+    frame: false,
+    titleBarStyle: 'customButtonsOnHover',
   });
   mainWindowRef.current = mainWindow;
   // and load the index.html of the app.

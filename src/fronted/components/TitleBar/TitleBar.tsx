@@ -3,12 +3,11 @@ import TitleBarMac from './TitleBarMac';
 import useSystem from '../../hooks/useSystem';
 
 export interface TitleBarProps {
-    autoHideOnMac?: boolean;
     className?: string;
     maximizable?: boolean;
 }
 
-const TitleBar = ({ autoHideOnMac, className, maximizable }: TitleBarProps) => {
+const TitleBar = ({ className, maximizable }: TitleBarProps) => {
     const isWindows = useSystem((s) => s.isWindows);
 
     return (
@@ -19,14 +18,13 @@ const TitleBar = ({ autoHideOnMac, className, maximizable }: TitleBarProps) => {
                     maximizable={maximizable}
                 />
             ) : (
-                <TitleBarMac autoHide={autoHideOnMac} />
+                <TitleBarMac />
             )}
         </>
     );
 };
 
 TitleBar.defaultProps = {
-    autoHideOnMac: true,
     className: '',
     maximizable: true,
 };

@@ -1,95 +1,70 @@
 import React, { useEffect, useState } from 'react';
-import useSystem from '../../hooks/useSystem';
 import useLayout from '../../hooks/useLayout';
-import { cn } from '../../../common/utils/Util';
+import { cn } from '@/common/utils/Util';
+import './TitleBarWindows.css'
 
 export interface TitleBarProps {
-    autoHide?: boolean;
 }
 
-const api = window.electron;
-
-const TitleBarMac = ({ autoHide }: TitleBarProps) => {
-    const [isMouseOver, setIsMouseOver] = useState(false);
+const TitleBarMac = ({  }: TitleBarProps) => {
     const showSideBar = useLayout((s) => s.showSideBar);
-    const windowState = useSystem((s) => s.windowState);
-    const setWindowState = useSystem((s) => s.setWindowState);
-    const isMain = useSystem((s) => s.isMain);
-    const fullScreen = windowState === 'fullscreen';
-    const onDoubleClick = async () => {
-        if (fullScreen) {
-            return;
-        }
-        if (windowState === 'maximized') {
-            setWindowState('normal');
-        } else {
-            setWindowState('maximized');
-        }
-    };
 
-    const handleMouseOver = async () => {
-        if (fullScreen) {
-            return;
-        }
-        setIsMouseOver(!fullScreen);
-        if (showSideBar) {
-            await api.showButton();
-            return;
-        }
-        if (!fullScreen && autoHide) {
-            if (isMain) {
-                await api.showButton();
-            }
-        }
-    };
-
-    const handleMouseLeave = async () => {
-        if (fullScreen) {
-            return;
-        }
-        setIsMouseOver(false);
-        if (showSideBar) {
-            await api.showButton();
-            return;
-        }
-        if (!fullScreen && autoHide) {
-            setIsMouseOver(false);
-            if (isMain) {
-                await api.hideButton();
-            }
-        }
-        console.log('handleMouseLeave');
-    };
-
+    const [showTrafficLight, setShowTrafficLight] = useState(false);
     useEffect(() => {
-        const runEffect = async () => {
-            if (showSideBar || fullScreen) {
-                await api.showButton();
+        let timeout: NodeJS.Timeout;
+        const handleMouseMove = () => {
+            if (showSideBar) {
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+                setShowTrafficLight(true);
                 return;
             }
-            if (isMouseOver) {
-                await api.showButton();
-            } else {
-                await api.hideButton();
+            if (timeout) {
+                clearTimeout(timeout);
             }
-        };
-        runEffect();
-    }, [fullScreen, isMouseOver, showSideBar]);
+            setShowTrafficLight(true);
+            timeout = setTimeout(() => {
+                setShowTrafficLight(false);
+            }, 1000);
+        }
+        handleMouseMove();
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        }
+    }, [showSideBar]);
 
     return (
         // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-        <div onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+        <div className={cn('w-full h-10 absolute top-0 z-50 flex')}
+            >
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+            <div className={cn('w-20 h-full')}>
+                <div
+                    className={cn("no-drag flex justify-center gap-[8px] items-center translate-y-2 -translate-x-[6px]",
+                        showTrafficLight ? 'opacity-100' : 'opacity-0',
+                        )}>
+                    <div
+                        className="rounded-full w-3 h-3 bg-gray-400"
+                    />
+                    <div
+                        className="rounded-full w-3 h-3 bg-gray-400"
+                    />
+                    <div
+                        className="rounded-full w-3 h-3 bg-gray-400"
+                    />
+                </div>
+            </div>
             <div
-                className={cn('drag w-full h-10 absolute top-0 z-50')}
+                className={cn('drag flex-1 h-full')}
                 onDoubleClick={() => {
-                    onDoubleClick();
+                    // onDoubleClick();
                 }}
             />
         </div>
     );
 };
 TitleBarMac.defaultProps = {
-    autoHide: true,
 };
 export default TitleBarMac;
