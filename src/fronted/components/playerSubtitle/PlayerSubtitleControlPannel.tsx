@@ -65,7 +65,7 @@ const PlayerControlPannel = ({
                     setMouseOver(true);
                 }}
                 onMouseLeave={() => {
-                    setMouseOver(false);
+                    // setMouseOver(false);
                 }}
             >
                 <div

@@ -14,6 +14,8 @@ export const SettingKeyObj = {
     'shortcut.adjustEndMinus': 'n',
     'shortcut.adjustEndPlus': 'm',
     'shortcut.clearAdjust': 'v',
+    'shortcut.nextPlaybackRate': 'p',
+    'userSelect.playbackRateStack':'',
     'apiKeys.youdao.secretId': '',
     'apiKeys.youdao.secretKey': '',
     'apiKeys.tencent.secretId': '',

@@ -23,6 +23,7 @@ const ShortcutSetting = () => {
         'shortcut.adjustEndMinus',
         'shortcut.adjustEndPlus',
         'shortcut.clearAdjust',
+        'shortcut.nextPlaybackRate',
     ]);
     return (
         <form className="h-full overflow-y-auto flex flex-col gap-4">
@@ -89,6 +90,11 @@ const ShortcutSetting = () => {
                     value={setting('shortcut.nextTheme')}
                     setValue={setSettingFunc('shortcut.nextTheme')}
                 />
+                <SettingInput
+                    title="切换播放速度"
+                    description="在播放器速度选择弹窗勾选的速度中切换"
+                    value={setting('shortcut.nextPlaybackRate')}
+                    setValue={setSettingFunc('shortcut.nextPlaybackRate')}/>
                 <SettingInput
                     title="开始时间 -"
                     description="当精听一句话时, 可能遇到字幕时间不准确的情况, 可以通过这个快捷键来调整字幕的开始时间"

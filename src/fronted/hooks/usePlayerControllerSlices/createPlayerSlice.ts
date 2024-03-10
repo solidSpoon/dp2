@@ -6,6 +6,7 @@ import {
     SeekAction,
     SentenceSlice,
 } from './SliceTypes';
+import useSetting from "@/fronted/hooks/useSetting";
 
 const OVERDUE_TIME = 600;
 const isTimeOverdue = (time: number) => {
@@ -51,6 +52,7 @@ const createPlayerSlice: StateCreator<
     duration: 0,
     seekTime: { time: 0 },
     playbackRate: 1,
+    // rateStack: [],
     setMuted: (muted) => set({ muted }),
     setVolume: (volume) => set({ volume }),
     play: () => set({ playing: true }),
@@ -78,6 +80,19 @@ const createPlayerSlice: StateCreator<
     },
     getExactPlayTime: () => get().internal.exactPlayTime,
     setPlaybackRate: (rate) => set({ playbackRate: rate }),
+    nextRate: () => {
+        const rates = useSetting.getState().setting('userSelect.playbackRateStack')
+            .split(',')
+            .map((v) => parseFloat(v))
+            .filter((v) => !isNaN(v));
+        if (rates.length === 0) {
+            return;
+        }
+        const currentRate = get().playbackRate;
+        const currentIndex = rates.indexOf(currentRate) === -1 ? 0 : rates.indexOf(currentRate);
+        const nextIndex = (currentIndex + 1) % rates.length;
+        set({ playbackRate: rates[nextIndex] });
+    }
 });
 
 export default createPlayerSlice;

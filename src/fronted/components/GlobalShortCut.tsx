@@ -24,6 +24,7 @@ export default function GlobalShortCut(this: any, { children }: ReactParam) {
         adjustStart,
         adjustEnd,
         clearAdjust,
+        nextRate,
     } = usePlayerController(
         useShallow((s) => ({
             space: s.space,
@@ -38,6 +39,7 @@ export default function GlobalShortCut(this: any, { children }: ReactParam) {
             adjustStart: s.adjustStart,
             adjustEnd: s.adjustEnd,
             clearAdjust: s.clearAdjust,
+            nextRate: s.nextRate,
         }))
     );
     const { onUserFinishScrolling, scrollState } = useSubtitleScroll((s) => ({
@@ -126,6 +128,7 @@ export default function GlobalShortCut(this: any, { children }: ReactParam) {
             setting('appearance.theme') === 'dark' ? 'light' : 'dark'
         )
     );
+    registerKey(setting('shortcut.nextPlaybackRate'), nextRate);
     return (
         <Keyevent className="TopSide" events={events} needFocusing={false}>
             {children}

@@ -258,7 +258,7 @@ useFile.subscribe(
             return;
         }
         usePlayerController.getState().setSubtitle(subtitle);
-        usePlayerController.getState().internal.wordLevel = new Map();
+        // usePlayerController.getState().internal.wordLevel = new Map();
         const finishedGroup = new Set<number>();
         let inited = false;
         while (CURRENT_FILE === useFile.getState().subtitleFile) {
