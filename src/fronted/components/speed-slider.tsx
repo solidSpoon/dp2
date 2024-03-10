@@ -20,10 +20,12 @@ const SpeedSlider = ({speed, onSpeedChange, onSelectFinish}: VolumeSliderProps) 
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
         if (open) {
-            inputRef.current?.focus();
+            setTimeout(() => {
+                inputRef.current?.focus();
+            }, 0);
         }
     }, [open]);
-    const {setting, setSetting} = useSetting(useShallow (s =>({
+    const {setting, setSetting} = useSetting(useShallow(s => ({
         setting: s.setting,
         setSetting: s.setSetting
     })));

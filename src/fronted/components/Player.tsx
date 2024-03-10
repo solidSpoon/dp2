@@ -9,6 +9,7 @@ import { SeekAction } from '../hooks/usePlayerControllerSlices/SliceTypes';
 import PlayerSubtitle from "@/fronted/components/playerSubtitle/PlayerSubtitle";
 import PlayerSubtitlePannel from "@/fronted/components/playerSubtitle/PlayerSubtitlePannel";
 import useLayout from "@/fronted/hooks/useLayout";
+import PlaySpeedToaster from "@/fronted/components/PlaySpeedToaster";
 
 const api = window.electron;
 
@@ -234,6 +235,7 @@ export default function Player(): ReactElement {
                         />
                     ))}
                     {fullScreen && <PlayerSubtitlePannel/>}
+                    <PlaySpeedToaster  speed={playbackRate} className='absolute top-3 left-3'/>
                 </div>
             </div>
         );
