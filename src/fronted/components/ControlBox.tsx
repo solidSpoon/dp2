@@ -10,6 +10,7 @@ import {sentenceClearAllAdjust} from '../hooks/usePlayerControllerSlices/createS
 import {Switch} from "@/fronted/components/ui/switch";
 import {Label} from './ui/label';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/fronted/components/ui/card";
+import useSetting from "@/fronted/hooks/useSetting";
 
 const ControlBox = () => {
     const w = cpW.bind(
@@ -43,6 +44,9 @@ const ControlBox = () => {
             changePopType: s.changePopType,
         }))
     );
+    const setSetting = useSetting((s) => s.setSetting);
+    const setting = useSetting((s) => s.setting);
+
 
     const [clearAllAdjust, setClearAllAdjust] = useState(false)
     return (
@@ -59,7 +63,7 @@ const ControlBox = () => {
             <CardDescription>Control the subtitle and video</CardDescription>
         </CardHeader>
             <CardContent
-                className={cn("grid place-content-start overflow-y-auto  w-full h-0 flex-1 pt-1",
+                className={cn("grid place-content-start overflow-y-auto gap-y-4 w-full h-0 flex-1 pt-1",
                     "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-track-gray-100 scrollbar-track-rounded"
                 )}
                 style={{
@@ -104,6 +108,16 @@ const ControlBox = () => {
                         id="singleRepeat"
                     />
                     <Label htmlFor="singleRepeat">单句循环</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <Switch
+                        checked={setting('appearance.theme') === 'dark'}
+                        onCheckedChange={() => {
+                            setSetting('appearance.theme', setting('appearance.theme') === 'dark' ? 'light' : 'dark');
+                        }}
+                        id="nightMode"
+                    />
+                    <Label htmlFor="nightMode">夜间模式</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                     <Switch

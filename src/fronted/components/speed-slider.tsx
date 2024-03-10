@@ -1,7 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {cn} from '@/common/utils/Util';
-import {autoPlacement, offset, useClick, useDismiss, useFloating, useInteractions} from '@floating-ui/react';
-import {Toggle} from "@/fronted/components/ui/toggle";
 import {Popover, PopoverContent, PopoverTrigger} from "@/fronted/components/ui/popover";
 import {Button} from "@/fronted/components/ui/button";
 import {Label} from "@/fronted/components/ui/label";
@@ -14,25 +12,7 @@ export interface VolumeSliderProps {
 
 const SpeedSlider = ({speed, onSpeedChange}: VolumeSliderProps) => {
     const [open, setOpen] = useState(false);
-    const {refs, floatingStyles, context} = useFloating({
-        open: open,
-        onOpenChange: setOpen,
-        middleware: [
-            offset(5),
-            autoPlacement({
-                allowedPlacements: [
-                    'top'
-                ]
-            })
-        ]
-    });
-    const click = useClick(context);
-    const dismiss = useDismiss(context);
     const inputRef = useRef<HTMLInputElement>(null);
-    const {getReferenceProps, getFloatingProps} = useInteractions([
-        click,
-        dismiss
-    ]);
     useEffect(() => {
         if (open) {
             inputRef.current?.focus();
@@ -42,8 +22,8 @@ const SpeedSlider = ({speed, onSpeedChange}: VolumeSliderProps) => {
         return (
             <div
                 onClick={() => {
-                    onSpeedChange(num);
                     setOpen(false);
+                    onSpeedChange(num);
                 }}
                 className={cn(
                     'flex flex-row w-full items-center justify-start px-8 py-1.5 rounded text-sm',
@@ -133,11 +113,14 @@ const SpeedSlider = ({speed, onSpeedChange}: VolumeSliderProps) => {
     // );
 
     return (
-        <Popover
-
+        <Popover open={open}
+                 onOpenChange={setOpen}
         >
             <PopoverTrigger asChild>
-                <Button size={"sm"} variant="outline"><span className={cn('w-12')}>{speed.toFixed(2)}x</span></Button>
+                <Button
+                    role="combobox"
+                    aria-expanded={open}
+                    size={"sm"} variant="outline"><span className={cn('w-12')}>{speed.toFixed(2)}x</span></Button>
             </PopoverTrigger>
             <PopoverContent
                 side={'top'} align={'start'}

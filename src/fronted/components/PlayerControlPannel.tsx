@@ -59,7 +59,7 @@ const PlayerControlPannel = ({
             window.clearTimeout(mouseOverTimeout.current.pop());
         }
         if (!mouseOverOut) {
-            const timeout = window.setTimeout(() => setMouseOverOut(true), 100);
+            const timeout = window.setTimeout(() => setMouseOverOut(true), 50);
             if (mouseOverTimeout.current.push) {
                 mouseOverTimeout.current.push(timeout);
             } else {
@@ -100,7 +100,9 @@ const PlayerControlPannel = ({
             )}
         >
             <Card
-                className={cn('p-5 pb-3',!mouseOverOut && 'bg-transparent h-20 border-0 shadow-none')}
+                className={cn('p-5 pb-3',
+                    mouseOverOut && 'backdrop-blur bg-background/50',
+                    !mouseOverOut && 'backdrop-blur-0 bg-transparent h-20 border-0 shadow-none')}
                 onMouseMove={(e) => {
                     e.stopPropagation();
                     handleMouseMoveIn();
