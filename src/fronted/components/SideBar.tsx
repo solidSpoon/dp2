@@ -30,16 +30,16 @@ const SideBar = ({ compact }: SideBarProps) => {
                 className={cn(
                     'w-full px-2 flex justify-start items-center gap-2 rounded-xl h-10',
                     location.pathname.includes(key)
-                        ? 'bg-white/80 drop-shadow'
+                        ? 'bg-stone-100 drop-shadow dark:bg-neutral-600'
                         : 'hover:bg-black/10',
                     compact && 'justify-center'
                 )}
             >
                 {cloneElement(icon, {
-                    className: cn('w-5 h-5 text-amber-700 flex-shrink-0'),
+                    className: cn('w-5 h-5 text-primary flex-shrink-0'),
                 })}
                 {!compact && (
-                    <div className={cn('text-base  truncate w-0 flex-1')}>
+                    <div className={cn('text-base text-foreground  truncate w-0 flex-1')}>
                         {text}
                     </div>
                 )}

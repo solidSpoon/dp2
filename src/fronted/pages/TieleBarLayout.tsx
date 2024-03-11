@@ -7,7 +7,8 @@ const TitleBarLayout = () => {
     return (
         <div
             className={cn(
-                'w-full h-screen bg-stone-200 flex flex-col font-face-arc overflow-hidden select-none'
+                'w-full h-screen bg-stone-200 flex flex-col font-face-arc overflow-hidden select-none',
+                'dark:bg-neutral-500'
             )}
         >
             <TitleBar className="" />
