@@ -3,7 +3,6 @@ import {MakerDeb} from '@electron-forge/maker-deb';
 import {MakerRpm} from '@electron-forge/maker-rpm';
 import {VitePlugin} from '@electron-forge/plugin-vite';
 import MakerDMG from "@electron-forge/maker-dmg";
-import MakerWix from "@electron-forge/maker-wix";
 import MakerSquirrel from "@electron-forge/maker-squirrel";
 
 const config: ForgeConfig = {
@@ -17,30 +16,19 @@ const config: ForgeConfig = {
         new MakerSquirrel({
             loadingGif: './assets/icons/install.png',
             setupIcon: './assets/icons/icon.ico',
+            iconUrl: 'https://raw.githubusercontent.com/solidSpoon/dp2/master/assets/icons/icon.ico',
         }),
-        // new MakerWix({
-        //     // name: 'dp2',
-        //     icon: './assets/icons/icon.ico',
-        //     ui: {
-        //         chooseDirectory: true,
-        //     }
-        // }),
         new MakerDMG({
-            // name: 'dp2',
             icon: './assets/icons/icon.icns',
-            // background: './assets/icons/icon.icns',
             format: 'ULFO'
         }),
-        // new MakerZIP({}, ['darwin']),
         new MakerRpm({
             options: {
-                // name: 'dp2',
                 icon: './assets/icons/icon.png',
             }
         }),
         new MakerDeb({
             options: {
-                // name: 'dp2',
                 icon: './assets/icons/icon.png',
             }
         })],
