@@ -10,11 +10,13 @@ const config: ForgeConfig = {
         asar: true,
         icon: './assets/icons/icon',
         extraResource: ["./drizzle"],
-        executableName: 'DashPlayer',
+        executableName: 'dash-player',
+        name: 'DashPlayer',
     },
     rebuildConfig: {},
     makers: [
         new MakerSquirrel({
+            name: 'DashPlayer',
             loadingGif: './assets/icons/install.png',
             setupIcon: './assets/icons/icon.ico',
             iconUrl: 'https://raw.githubusercontent.com/solidSpoon/dp2/master/assets/icons/icon.ico',
@@ -25,11 +27,15 @@ const config: ForgeConfig = {
         }),
         new MakerRpm({
             options: {
+                name: 'dash-player',
+                productName: 'DashPlayer',
                 icon: './assets/icons/icon.png',
             }
         }),
         new MakerDeb({
             options: {
+                name: 'dash-player',
+                productName: 'DashPlayer',
                 icon: './assets/icons/icon.png',
             }
         })],
