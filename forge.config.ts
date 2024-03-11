@@ -9,7 +9,8 @@ const config: ForgeConfig = {
     packagerConfig: {
         asar: true,
         icon: './assets/icons/icon',
-        extraResource: ["./drizzle"]
+        extraResource: ["./drizzle"],
+        executableName: 'DashPlayer',
     },
     rebuildConfig: {},
     makers: [
