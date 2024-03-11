@@ -3,10 +3,9 @@ import useLayout from '../../hooks/useLayout';
 import { cn } from '@/common/utils/Util';
 import './TitleBarWindows.css'
 
-export interface TitleBarProps {
-}
 
-const TitleBarMac = ({  }: TitleBarProps) => {
+
+const TitleBarMac = () => {
     const showSideBar = useLayout((s) => s.showSideBar);
 
     const [showTrafficLight, setShowTrafficLight] = useState(false);

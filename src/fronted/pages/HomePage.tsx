@@ -49,7 +49,6 @@ const HomePage = () => {
             <TitleBar
                 maximizable={false}
                 className="fixed top-0 left-0 w-full z-50"
-                autoHideOnMac={false}
             />
             <div
                 className={cn(
