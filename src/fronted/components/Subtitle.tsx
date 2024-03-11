@@ -107,10 +107,9 @@ export default function Subtitle() {
                     ref={setVirtuoso}
                     className={twJoin(
                         'h-full w-full overflow-y-scroll text-stone-600 dark:text-neutral-200',
-                        'scrollbar-thumb-rounded',
-                        'scrollbar-thin',
+                        'scrollbar-thin scrollbar-thumb-rounded-full',
                         mouseOver &&
-                            'scrollbar-thumb-scrollbarThumb hover:scrollbar-thumb-scrollbarThumbHover',
+                            'scrollbar-thumb-zinc-400 dark:scrollbar-thumb-stone-400 hover:scrollbar-thumb-zinc-500 dark:hover:scrollbar-thumb-stone-300',
                         showSideBar && 'scrollbar-none'
                     )}
                     data={subtitle}
