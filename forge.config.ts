@@ -1,9 +1,10 @@
 import type {ForgeConfig} from '@electron-forge/shared-types';
-import {MakerSquirrel} from '@electron-forge/maker-squirrel';
-import {MakerZIP} from '@electron-forge/maker-zip';
 import {MakerDeb} from '@electron-forge/maker-deb';
 import {MakerRpm} from '@electron-forge/maker-rpm';
 import {VitePlugin} from '@electron-forge/plugin-vite';
+import MakerDMG from "@electron-forge/maker-dmg";
+import MakerWix from "@electron-forge/maker-wix";
+import MakerSquirrel from "@electron-forge/maker-squirrel";
 
 const config: ForgeConfig = {
     packagerConfig: {
@@ -12,7 +13,37 @@ const config: ForgeConfig = {
         extraResource: ["./drizzle"]
     },
     rebuildConfig: {},
-    makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
+    makers: [
+        new MakerSquirrel({
+            loadingGif: './assets/icons/install.png',
+            setupIcon: './assets/icons/icon.ico',
+        }),
+        // new MakerWix({
+        //     // name: 'dp2',
+        //     icon: './assets/icons/icon.ico',
+        //     ui: {
+        //         chooseDirectory: true,
+        //     }
+        // }),
+        new MakerDMG({
+            // name: 'dp2',
+            icon: './assets/icons/icon.icns',
+            // background: './assets/icons/icon.icns',
+            format: 'ULFO'
+        }),
+        // new MakerZIP({}, ['darwin']),
+        new MakerRpm({
+            options: {
+                // name: 'dp2',
+                icon: './assets/icons/icon.png',
+            }
+        }),
+        new MakerDeb({
+            options: {
+                // name: 'dp2',
+                icon: './assets/icons/icon.png',
+            }
+        })],
     plugins: [
         new VitePlugin({
             // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
